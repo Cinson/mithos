@@ -1,0 +1,7 @@
+{
+    "name": "hernandes/mithos",
+    "description": "Mithos",
+    "require": {
+        "php": ">=5.4"
+    }
+}
