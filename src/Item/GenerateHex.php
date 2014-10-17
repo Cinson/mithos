@@ -83,7 +83,7 @@ class GenerateHex {
         $excellent += $item->getExcellent(3) ? 8 : 0;
         $excellent += $item->getExcellent(4) ? 16 : 0;
         $excellent += $item->getExcellent(5) ? 32 : 0;
-        return $this->fix(dechex($excellent));
+        return $this->_fix(dechex($excellent));
     }
 
     private function _generateByte10() {

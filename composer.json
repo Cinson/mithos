@@ -1,6 +1,11 @@
 {
     "name": "hernandes/mithos",
     "description": "Mithos f",
+    "authors": [
+        {
+            "name": "Flavio Hernandes"
+        }
+    ],
     "require": {
         "php": ">=5.4"
     },
