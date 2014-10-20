@@ -50,7 +50,7 @@ class Cache {
     }
 
 
-    public function store($key, $data, $expiration = 0) {
+    public function write($key, $data, $expiration = 0) {
         $storeData = array(
             'time' => time(),
             'expire' => $expiration,
@@ -67,7 +67,7 @@ class Cache {
         return $this;
     }
 
-    public function retrieve($key, $timestamp = false) {
+    public function read($key, $timestamp = false) {
         $cachedData = $this->loadCache();
         $type = !$timestamp ? 'data' : 'time';
         if (!isset($cachedData[$key][$type])) {
@@ -76,22 +76,7 @@ class Cache {
         return unserialize($cachedData[$key][$type]);
     }
 
-    public function retrieveAll($meta = false) {
-        if (!$meta) {
-            $results = array();
-            $cachedData = $this->loadCache();
-            if ($cachedData) {
-                foreach ($cachedData as $k => $v) {
-                    $results[$k] = unserialize($v['data']);
-                }
-            }
-            return $results;
-        } else {
-            return $this->loadCache();
-        }
-    }
-
-    public function erase($key) {
+    public function delete($key) {
         $cacheData = $this->loadCache();
         if (is_array($cacheData)) {
             if (isset($cacheData[$key])) {
@@ -99,31 +84,13 @@ class Cache {
                 $cacheData = json_encode($cacheData);
                 file_put_contents($this->getCacheDir(), $cacheData);
             } else {
-                throw new CacheEraseException('Erase key: ' . $key . ' not found.');
+                throw new \RuntimeException('Erase key: ' . $key . ' not found.');
             }
         }
         return $this;
     }
 
-    public function eraseExpired() {
-        $cacheData = $this->loadCache();
-        if (is_array($cacheData)) {
-            $counter = 0;
-            foreach ($cacheData as $key => $entry) {
-                if ($this->checkExpired($entry['time'], $entry['expire'])) {
-                    unset($cacheData[$key]);
-                    $counter++;
-                }
-            }
-            if ($counter > 0) {
-                $cacheData = json_encode($cacheData);
-                file_put_contents($this->getCacheDir(), $cacheData);
-            }
-            return $counter;
-        }
-    }
-
-    public function eraseAll() {
+    public function deleteAll() {
         $cacheDir = $this->getCacheDir();
         if (file_exists($cacheDir)) {
             $cacheFile = fopen($cacheDir, 'w');
