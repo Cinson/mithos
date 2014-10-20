@@ -7,6 +7,10 @@ class Logo {
     private $_mark = null;
     private $_size = 32;
 
+    public function __construct($mark = null) {
+        $this->setMark($mark);
+    }
+
     public function setMark($mark) {
         $this->_mark = $mark;
         return $this;

@@ -1,5 +1,5 @@
 <?php
 
-namespace Mithos\Socket;
+namespace Mithos\Socket\Exception;
 
 class SocketException extends \Exception { }

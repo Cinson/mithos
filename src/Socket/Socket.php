@@ -2,6 +2,8 @@
 
 namespace Mithos\Socket;
 
+use Mithos\Socket\Exception\SocketException;
+
 class Socket {
 
     private $_sock;
