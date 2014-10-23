@@ -50,14 +50,6 @@ class Config implements \Countable, \Iterator {
         }
     }
 
-    public function __get($name) {
-        return $this->get($name);
-    }
-
-    public function __isset($name) {
-        return isset($this->_data[$name]);
-    }
-
     public function count() {
         return $this->_count;
     }
