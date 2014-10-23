@@ -1,6 +1,6 @@
 <?php
 
-namespace Mithos;
+namespace Mithos\Core;
 
 use Mithos\Util\Hash;
 
