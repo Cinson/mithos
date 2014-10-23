@@ -2,7 +2,7 @@
 
 namespace Mithos;
 
-use Util\Hash;
+use Mithos\Util\Hash;
 
 class Config implements \Countable, \Iterator {
 
