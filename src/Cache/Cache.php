@@ -49,7 +49,6 @@ class Cache {
         }
     }
 
-
     public function write($key, $data, $expiration = 0) {
         $storeData = array(
             'time' => time(),
@@ -84,7 +83,7 @@ class Cache {
                 $cacheData = json_encode($cacheData);
                 file_put_contents($this->getCacheDir(), $cacheData);
             } else {
-                throw new \RuntimeException('Erase key: ' . $key . ' not found.');
+                throw new \RuntimeException('Cache ' . $key . ' not found.');
             }
         }
         return $this;
