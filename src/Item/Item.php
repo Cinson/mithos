@@ -22,6 +22,7 @@ class Item {
     private $_ancient;
     private $_size = array();
     private $_itemSize = self::ITEM_SIZE_20;
+    private $_storage;
 
     public function __construct($hex = null) {
         if ($hex !== null) {
@@ -183,8 +184,119 @@ class Item {
     public function getItemSize() {
         return $this->_itemSize;
     }
+    
+    public function setStorage(AbstractStorage $storage) {
+        $this->_storage = $storage;
+    }
+    
+    public function getStorage() {
+        return $this->_storage;
+    }
 
     public function isHexEmpty() {
         return strtoupper($this->getHex()) === str_repeat('F', $this->getItemSize()) || $this->getHex() === str_repeat('0', $this->getItemSize());
+    }
+    
+    public function getExcellentName($index) {
+        $names = $this->getExcellentsName();
+        if (isset($names[$index])) {
+            return $names[$index];
+        }
+        return '';
+    }
+    
+    public function getExcellentsName() {
+        $names = array();
+        $options = Util::getExcellentsName($this->getId(), $this->getIndex());
+        $excellents = $this->getExcellents();
+
+        for ($i = 0; $i < 6; $i++) {
+            if ($excellents[$i]) {
+                $names[] = $options['opt' . $i];
+            }
+        }
+
+        return $names;
+    }
+    
+    public function parse() {
+        $hex = $this->getHex();
+
+        if ($this->isHexEmpty()) {
+            return;
+        }
+
+        $parse = new ParseHex($this->getHex());
+
+        $this->setId($parse->getId())
+                ->setIndex($parse->getIndex())
+                ->setUnique($parse->getUnique())
+                ->setLevel($parse->getLevel())
+                ->setOption($parse->getOption())
+                ->setSkill($parse->getSkill())
+                ->setLuck($parse->getLuck())
+                ->setDurability($parse->getDurability())
+                ->setExcellents($parse->getExcellents())
+                ->setSerial($parse->getSerial())
+                ->update();
+    }
+
+    public function toArray() {
+        $item = array();
+        if (!$this->isHexEmpty()) {
+            $item = array(
+                'id' => $this->getId(),
+                'index' => $this->getIndex(),
+                'name' => $this->getName(),
+                'size' => $this->getSize(),
+                'unique' => $this->isUnique(),
+                'level' => $this->getLevel(),
+                'option' => $this->getOption(),
+                'skill' => $this->getSkill(),
+                'luck' => $this->getLuck(),
+                'durability' => $this->getDurability(),
+                'excellents' => $this->getExcellents(),
+                'serial' => $this->getSerial()
+            );
+        }
+        return $item;
+    }
+
+    public function update() {
+        if (!$this->getStorage()) {
+            throw new \RuntimeException('Storage class not found');
+        }
+        
+        $item = $this->getStorage()->getItem($this->getIndex(), $this->getId());
+        $this->setName($item['name'])
+                ->setSize($item['width'], $item['height']);
+
+        if ($this->getDurability() === null) {
+            $this->setDurability($item['durability']);
+        }
+    }
+
+    public function generate() {
+        $generate = new GenerateHex($this);
+        $hex = $generate->generate();
+        $this->setHex($hex);
+        return $hex;
+    }
+
+    public function clear() {
+        $this->_hex = null;
+        $this->_id = null;
+        $this->_index = null;
+        $this->_unique = null;
+        $this->_name = null;
+        $this->_level = null;
+        $this->_option = null;
+        $this->_luck = null;
+        $this->_skill = null;
+        $this->_durability = null;
+        $this->_excellents = null;
+        $this->_serial = null;
+        $this->_ancient = null;
+        $this->_size = array();
     }
 }
