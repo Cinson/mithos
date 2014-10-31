@@ -187,6 +187,7 @@ class Item {
     
     public function setStorage(AbstractStorage $storage) {
         $this->_storage = $storage;
+        return $this;
     }
     
     public function getStorage() {
@@ -207,7 +208,7 @@ class Item {
     
     public function getExcellentsName() {
         $names = array();
-        $options = Util::getExcellentsName($this->getId(), $this->getIndex());
+        $options = ItemUtil::getExcellentsName($this->getId(), $this->getIndex());
         $excellents = $this->getExcellents();
 
         for ($i = 0; $i < 6; $i++) {

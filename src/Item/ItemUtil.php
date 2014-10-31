@@ -2,7 +2,7 @@
 
 namespace Mithos\Item;
 
-class Util {
+class ItemUtil {
 
 	public static function getExcellentsName($section, $index) {
 		$type = 0;
