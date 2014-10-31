@@ -76,15 +76,21 @@ class ParseHex {
     }
     
     public function getHarmonyType( ) {
-        return hexdec(substr($hex, 20, 2)) & 0xF0 >> 4;
+        return hexdec(substr($this->getHex(), 20, 2)) & 0xF0 >> 4;
     }
     
     public function getHarmonyLevel() {
-        return hexdec(substr($hex, 20, 2)) & 0x0F;
+        return hexdec(substr($this->getHex(), 20, 2)) & 0x0F;
     }
     
     public function getSockets() {
-        
+        $sock = array();
+        $sock[0] = hexdec(substr($this->getHex(), 22, 2));
+        $sock[1] = hexdec(substr($this->getHex(), 24, 2));
+        $sock[2] = hexdec(substr($this->getHex(), 26, 2));
+        $sock[3] = hexdec(substr($this->getHex(), 28, 2));
+        $sock[4] = hexdec(substr($this->getHex(), 30, 2));
+        return $sock; 
     }
     
 }
