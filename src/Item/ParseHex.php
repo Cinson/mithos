@@ -68,7 +68,23 @@ class ParseHex {
     }
 
     public function getAncient() {
-
+        return hexdec(substr($this->getHex(), 17, 1));
+    }
+    
+    public function getRefine() {
+        return hexdec(substr($this->getHex(), 19, 1));
+    }
+    
+    public function getHarmonyType( ) {
+        return hexdec(substr($hex, 20, 2)) & 0xF0 >> 4;
+    }
+    
+    public function getHarmonyLevel() {
+        return hexdec(substr($hex, 20, 2)) & 0x0F;
+    }
+    
+    public function getSockets() {
+        
     }
     
 }
