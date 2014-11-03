@@ -34,9 +34,10 @@ class GenerateHex {
         $hex .= $this->_generateByte8();
         $hex .= $this->_generateByte10();
 
-//        if ($item->getItemSize() == Item::ITEM_SIZE_32) {
-//            $hex .= $this->_generateByte
-//        }
+        if ($item->getItemSize() == Item::ITEM_SIZE_32) {
+            $hex .= $this->_generateByte12();
+            $hex .= $this->_generateByte13to16();
+        }
 
         return strtoupper($hex);
     }
@@ -88,6 +89,14 @@ class GenerateHex {
 
     private function _generateByte10() {
         return $this->_fix($this->getItem()->getAncient(), 4);
+    }
+
+    private function _generateByte12() {
+
+    }
+
+    private function _generateByte13to16() {
+
     }
 
     private function _fix($string, $size = 2) {

@@ -2,6 +2,8 @@
 
 namespace Mithos\Item;
 
+use Mithos\Item\Storage\AbstractStorage;
+
 class Item {
 
     const ITEM_SIZE_20 = 20;

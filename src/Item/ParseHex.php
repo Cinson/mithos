@@ -75,7 +75,7 @@ class ParseHex {
         return hexdec(substr($this->getHex(), 19, 1));
     }
     
-    public function getHarmonyType( ) {
+    public function getHarmonyType() {
         return hexdec(substr($this->getHex(), 20, 2)) & 0xF0 >> 4;
     }
     
