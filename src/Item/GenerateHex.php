@@ -37,7 +37,7 @@ class GenerateHex {
 
         if (MuVersion::is(MuVersion::V97)) {
             $hex .= '0000';
-        } else if (MuVersion::is(MuVersion::V10)) {
+        } else if (MuVersion::is(MuVersion::V100)) {
             $hex .= $this->_generateByte9();
             $hex .= '00';
         } else {
