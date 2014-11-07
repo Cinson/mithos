@@ -209,6 +209,24 @@ class Item {
         return $this->_harmonyLevel;
     }
 
+    public function addSocket($position, $socket) {
+        $this->_sockets[$position] = $socket;
+        return $this;
+    }
+
+    public function getSocket($position) {
+        return $this->_sockets[$position];
+    }
+
+    public function setSockets(array $sockets) {
+        $this->_sockets = $sockets;
+        return $this;
+    }
+
+    public function getSockets() {
+        return $this->_sockets;
+    }
+
     public function setItemSize($size) {
         $this->_itemSize = $size;
         return $this;
