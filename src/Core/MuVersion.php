@@ -11,7 +11,7 @@ class MuVersion {
     private $_version;
     private static $_instance;
     
-    public function getInstance() {
+    public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
