@@ -2,6 +2,8 @@
 
 namespace Mithos\Item;
 
+use Mithos\Core\MuVersion;
+
 class ParseHex {
     
     private $_hex;
@@ -20,11 +22,22 @@ class ParseHex {
     }
 
     public function getId() {
-        return hexdec(substr($this->getHex(), 0, 2)) & 0x1F;
+        $temp = hexdec(substr($this->getHex(), 0, 2));
+        if (MuVersion::is(MuVersion::V97, MuVersion::V100)) {
+            return $temp & 0x1F;
+        } else {
+            return $temp;
+        }
     }
 
     public function getIndex() {
-        return ((hexdec(substr($this->getHex(), 0, 2)) & 0xE0) >> 5) + (((hexdec(substr($this->getHex(), 14, 2)) & 0x80) == 0x80) ? 8 : 0);
+        $temp = hexdec(substr($this->getHex(), 0, 2));
+        $unique = hexdec(substr($this->getHex(), 14, 2));
+        if (MuVersion::is(MuVersion::V97, MuVersion::V100)) {
+            return ($temp & 0xE0 >> 5) + ((($unique & 0x80) == 0x80) ? 8 : 0);
+        } else {
+            return hexdec(substr($this->getHex(), 18, 1));
+        }
     }
 
     public function getLevel() {
@@ -32,14 +45,14 @@ class ParseHex {
     }
 
     public function getExcellents() {
-        $hex = hexdec(substr($this->getHex(), 14, 2));
+        $temp = hexdec(substr($this->getHex(), 14, 2));
         $exc = array();
-        $exc[0] = ($hex & 0x01) == 0x01;
-        $exc[1] = ($hex & 0x02) == 0x02;
-        $exc[2] = ($hex & 0x04) == 0x04;
-        $exc[3] = ($hex & 0x08) == 0x08;
-        $exc[4] = ($hex & 0x10) == 0x10;
-        $exc[5] = ($hex & 0x20) == 0x20;
+        $exc[0] = ($temp & 0x01) == 0x01;
+        $exc[1] = ($temp & 0x02) == 0x02;
+        $exc[2] = ($temp & 0x04) == 0x04;
+        $exc[3] = ($temp & 0x08) == 0x08;
+        $exc[4] = ($temp & 0x10) == 0x10;
+        $exc[5] = ($temp & 0x20) == 0x20;
         return $exc;
     }
 

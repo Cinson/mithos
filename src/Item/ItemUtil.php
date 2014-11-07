@@ -10,7 +10,7 @@ class ItemUtil {
 			$type = 1;
 		} elseif (in_array($section, array(6, 7, 8, 9, 10, 11))) {
             $type = 2;  
-        } elseif($section == 12) {
+        } elseif ($section == 12) {
             if ($index >= 3 && $index <= 6) {
             	$type = 3; //Asas level 2
             }
@@ -46,89 +46,105 @@ class ItemUtil {
             case 0: 
                 $options = array(
                     'name' => 'No effect',
-                    'opt0' => 'No effect',
-                    'opt1' => 'No effect',
-                    'opt2' => 'No effect',
-                    'opt3' => 'No effect',
-                    'opt4' => 'No effect',
-                    'opt5' => 'No effect'
+                    'options' => array(
+                        'No effect',
+                        'No effect',
+                        'No effect',
+                        'No effect',
+                        'No effect',
+                        'No effect'
+                    )
                 );
                 break;
             case 1: 
                 $options = array(
                     'name' => 'EXE WEAPONS',
-                    'opt0' => 'Increases recovery rate of mana (Mana / 8)',
-                    'opt1' => 'Increases recovery rate of life (Life / 8)',
-                    'opt2' => 'Increase the speed of magical damage +7',
-                    'opt3' => 'Increase magical damage +1%',
-                    'opt4' => 'Increase magic damage + level/20',
-                    'opt5' => 'Success in excellent damage +10%'
+                    'options' => array(
+                        'Increases recovery rate of mana (Mana / 8)',
+                        'Increases recovery rate of life (Life / 8)',
+                        'Increase the speed of magical damage +7',
+                        'Increase magical damage +1%',
+                        'Increase magic damage + level/20',
+                        'Success in excellent damage +10%'
+                    )
                 );
                 break; 
             case 2: 
                 $options = array(
                     'name' => 'EXE SETS',
-                    'opt0' => 'Increased rate of acquisition of Zen +40%',
-                    'opt1' => 'Success of Defense +10%',
-                    'opt2' => 'Mirrors in 5% Damage Received',
-                    'opt3' => 'Lowers the damage by +4%',
-                    'opt4' => 'Increase mana +4%',
-                    'opt5' => 'Increases in life +4%'
+                    'options' => array(
+                        'Increased rate of acquisition of Zen +40%',
+                        'Success of Defense +10%',
+                        'Mirrors in 5% Damage Received',
+                        'Lowers the damage by +4%',
+                        'Increase mana +4%',
+                        'Increases in life +4%'
+                    )
                 );
                 break;
             case 3: 
                 $options = array(
                     'name' => 'EXE WINGS',
-                    'opt0' => 'Life increased by +125',
-                    'opt1' => 'Mana increased by +125',
-                    'opt2' => 'Defense of the opponent ignored by 3%',
-                    'opt3' => 'Stamina increased by +50',
-                    'opt4' => 'Increase the speed of magic damage to +5',
-                    'opt5' => 'No effect'
+                    'options' => array(
+                        'Life increased by +125',
+                        'Mana increased by +125',
+                        'Defense of the opponent ignored by 3%',
+                        'Stamina increased by +50',
+                        'Increase the speed of magic damage to +5',
+                        'No effect'
+                    )
                 );
                 break; 
             case 4: 
                 $options = array(
                     'name' => 'EXE FENRIR',
-                    'opt0' => '+Damage',
-                    'opt1' => '+Defense',
-                    'opt2' => '+Illusion',
-                    'opt3' => 'No effect',
-                    'opt4' => 'No effect',
-                    'opt5' => 'No effect'
+                    'options' => array(
+                        '+Damage',
+                        '+Defense',
+                        '+Illusion',
+                        'No effect',
+                        'No effect',
+                        'No effect'
+                    )
                 );
                 break;
             case 5: 
                 $options = array(
                     'name' => 'RINGS',
-                    'opt0' => 'Increases zens who fall into +40%',
-                    'opt1' => '+10% Defensive success rank',
-                    'opt2' => 'Returns the blow +5%',
-                    'opt3' => 'Received low blow +4%',
-                    'opt4' => 'Increase mana +4%',
-                    'opt5' => 'Increases in life +4%'
+                    'options' => array(
+                        'Increases zens who fall into +40%',
+                        '+10% Defensive success rank',
+                        'Returns the blow +5%',
+                        'Received low blow +4%',
+                        'Increase mana +4%',
+                        'Increases in life +4%'
+                    )
                 );
                 break; 
             case 6: 
                 $options = array(
                     'name' => 'PENDANTS',
-                    'opt0' => 'Increase mana after killing monster + mana / 8',
-                    'opt1' => 'Increases life after killing monster + life / 8',
-                    'opt2' => 'Increases attack speed +7',
-                    'opt3' => 'Adds +2% damage',
-                    'opt4' => '+ Increases damage level/20',
-                    'opt5' => '+10% Defensive success rank'
+                    'options' => array(
+                        'Increase mana after killing monster + mana / 8',
+                        'Increases life after killing monster + life / 8',
+                        'Increases attack speed +7',
+                        'Adds +2% damage',
+                        '+ Increases damage level/20',
+                        '+10% Defensive success rank'
+                    )
                 );
                 break; 
             case 7: 
                 $options = array(
                     'name' => 'EXE WINGS S4',
-                    'opt0' => 'Ignore the Power of Defensive Opponent 5%',
-                    'opt1' => '5% Chance to return the damage',
-                    'opt2' => '5% Chance of a lifetime to recover',
-                    'opt3' => '5% Chance to recover all mana',
-                    'opt4' => 'No effect',
-                    'opt5' => 'No effect'
+                    'options' => array(
+                        'Ignore the Power of Defensive Opponent 5%',
+                        '5% Chance to return the damage',
+                        '5% Chance of a lifetime to recover',
+                        '5% Chance to recover all mana',
+                        'No effect',
+                        'No effect'
+                    )
                 );
                 break; 
         }
@@ -136,4 +152,76 @@ class ItemUtil {
         return $options;
     }
 
+    public static function getRefineName($index) {
+        if ($index >= 0 && $index <= 6) {
+            $type = 6;
+        } elseif ($index == 7) {
+            $type = 1;
+        } elseif ($index == 8) {
+            $type = 2;
+        } elseif ($index == 9) {
+            $type = 3;
+        } elseif ($index == 10) {
+            $type = 4;
+        } elseif ($index == 11) {
+            $type = 5;
+        } else {
+            $type = 0;
+        }
+
+        $options = array();
+        switch ($type) {
+            case 0:
+                $options = array(
+                    'name' => 'No option',
+                    'opt0' => 'No Refinery 1&deg; Options',
+                    'opt1' => 'No Refinery 2&deg; Options',
+                );
+                break;
+            case 1:
+                $options = array(
+                    'name' => 'Helms',
+                    'opt0' => 'SD Recovery Rate +20',
+                    'opt1' => 'Defense Success Rate +10',
+                );
+                break;
+            case 2:
+                $options = array(
+                    'name' => 'Armors',
+                    'opt0' => 'SD Auto Recovery',
+                    'opt1' => 'Def Success Rate +10',
+                );
+                break;
+            case 3:
+                $options = array(
+                    'name' => 'Pants',
+                    'opt0' => 'Def Skill +200',
+                    'opt1' => 'Def Success Rate +10',
+                );
+                break;
+            case 4:
+                $options = array(
+                    'name' => 'Gloves',
+                    'opt0' => 'Max HP +200',
+                    'opt1' => 'Def Success Rate +10',
+                );
+                break;
+            case 5:
+                $options = array(
+                    'name' => 'Boots',
+                    'opt0' => 'Max SD +700',
+                    'opt1' => 'Def Success Rate +10',
+                );
+                break;
+            case 6:
+                $options = array(
+                    'name' => 'Weapons',
+                    'opt0' => 'Additional Dmg +200',
+                    'opt1' => 'Pow Success Rate +10',
+                );
+                break;
+        }
+
+        return $options;
+    }
 }

@@ -22,6 +22,10 @@ class Item {
     private $_excellents;
     private $_serial;
     private $_ancient;
+    private $_refine;
+    private $_sockets;
+    private $_harmonyType;
+    private $_harmonyLevel;
     private $_size = array();
     private $_itemSize = self::ITEM_SIZE_20;
     private $_storage;
@@ -178,6 +182,33 @@ class Item {
         return $this->_ancient;
     }
 
+    public function setRefine($refine) {
+        $this->_refine = $refine;
+        return $this;
+    }
+
+    public function getRefine() {
+        return $this->_refine;
+    }
+
+    public function setHarmonyType($harmonyType) {
+        $this->_harmonyType = $harmonyType;
+        return $this;
+    }
+
+    public function getHarmonyType() {
+        return $this->_harmonyType;
+    }
+
+    public function setHarmonyLevel($harmonyLevel) {
+        $this->_harmonyLevel = $harmonyLevel;
+        return $this;
+    }
+
+    public function getHarmonyLevel() {
+        return $this->_harmonyLevel;
+    }
+
     public function setItemSize($size) {
         $this->_itemSize = $size;
         return $this;
@@ -215,7 +246,7 @@ class Item {
 
         for ($i = 0; $i < 6; $i++) {
             if ($excellents[$i]) {
-                $names[] = $options['opt' . $i];
+                $names[] = $options['options'][$i];
             }
         }
 
@@ -223,8 +254,6 @@ class Item {
     }
     
     public function parse() {
-        $hex = $this->getHex();
-
         if ($this->isHexEmpty()) {
             return;
         }
@@ -259,7 +288,8 @@ class Item {
                 'luck' => $this->getLuck(),
                 'durability' => $this->getDurability(),
                 'excellents' => $this->getExcellents(),
-                'serial' => $this->getSerial()
+                'serial' => $this->getSerial(),
+                'ancient' => $this->getAncient()
             );
         }
         return $item;
@@ -271,6 +301,8 @@ class Item {
         }
         
         $item = $this->getStorage()->getItem($this->getIndex(), $this->getId());
+
+
         $this->setName($item['name'])
                 ->setSize($item['width'], $item['height']);
 

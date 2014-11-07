@@ -2,6 +2,8 @@
 
 namespace Mithos\Item;
 
+use Mithos\Core\MuVersion;
+
 class GenerateHex {
     
     private $_item;
@@ -32,11 +34,17 @@ class GenerateHex {
         $hex .= $this->_generateByte3();
         $hex .= $this->_generateByte4to7();
         $hex .= $this->_generateByte8();
-        $hex .= $this->_generateByte10();
 
-        if ($item->getItemSize() == Item::ITEM_SIZE_32) {
-            $hex .= $this->_generateByte12();
-            $hex .= $this->_generateByte13to16();
+        if (MuVersion::is(MuVersion::V97)) {
+            $hex .= '0000';
+        } else if (MuVersion::is(MuVersion::V10)) {
+            $hex .= $this->_generateByte9();
+            $hex .= '00';
+        } else {
+            $hex .= $this->_generateByte9();
+            $hex .= $this->_generateByte10();
+            $hex .= $this->_generateByte11();
+            $hex .= $this->_generateByte12to16();
         }
 
         return strtoupper($hex);
@@ -76,27 +84,48 @@ class GenerateHex {
     private function _generateByte8() {
         $item = $this->getItem();
         $excellent = 0;
-        $excellent += $item->isUnique() ? 128 : 0;
-        $excellent += $item->getOption() >= 16 ? 64 : 0;
-        $excellent += $item->getExcellent(0) ? 1 : 0;
-        $excellent += $item->getExcellent(1) ? 2 : 0;
-        $excellent += $item->getExcellent(2) ? 4 : 0;
-        $excellent += $item->getExcellent(3) ? 8 : 0;
-        $excellent += $item->getExcellent(4) ? 16 : 0;
-        $excellent += $item->getExcellent(5) ? 32 : 0;
+        if (MuVersion::is(MuVersion::V97, MuVersion::V100)) {
+            $excellent += $item->isUnique() ? 128 : 0;
+            $excellent += $item->getOption() >= 16 ? 64 : 0;
+            $excellent += $item->getExcellent(0) ? 1 : 0;
+            $excellent += $item->getExcellent(1) ? 2 : 0;
+            $excellent += $item->getExcellent(2) ? 4 : 0;
+            $excellent += $item->getExcellent(3) ? 8 : 0;
+            $excellent += $item->getExcellent(4) ? 16 : 0;
+            $excellent += $item->getExcellent(5) ? 32 : 0;
+        } else {
+            $excellent += $item->getOption() >= 4 ? 64 : 0;
+            $excellent += $item->getExcellent(0) ? 1 : 0;
+            $excellent += $item->getExcellent(1) ? 2 : 0;
+            $excellent += $item->getExcellent(2) ? 4 : 0;
+            $excellent += $item->getExcellent(3) ? 8 : 0;
+            $excellent += $item->getExcellent(4) ? 16 : 0;
+            $excellent += $item->getExcellent(5) ? 32 : 0;
+        }
         return $this->_fix(dechex($excellent));
     }
 
+    private function _generateByte9() {
+        return $this->_fix(($this->getItem()->getAncient() == 1 ? 5 : 0) + ($this->getItem()->getAncient() == 2 ? 9 : 0), 2);
+    }
+
     private function _generateByte10() {
-        return $this->_fix($this->getItem()->getAncient(), 4);
+        return $this->getItem()->getIndex() . ($this->getItem()->getRefine() ? 8 : 0);
     }
 
-    private function _generateByte12() {
-
+    private function _generateByte11() {
+        $harmony = $this->getItem()->getHarmonyType();
+        $harmony .= $this->getItem()->getHarmonyLevel();
+        return $harmony;
     }
 
-    private function _generateByte13to16() {
-
+    private function _generateByte12to16() {
+        $sockets = $this->getItem()->getSocket(0);
+        $sockets .= $this->getItem()->getSocket(1);
+        $sockets .= $this->getItem()->getSocket(2);
+        $sockets .= $this->getItem()->getSocket(3);
+        $sockets .= $this->getItem()->getSocket(4);
+        return $sockets;
     }
 
     private function _fix($string, $size = 2) {
