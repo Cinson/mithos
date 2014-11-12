@@ -27,8 +27,8 @@ class Item {
     private $_harmonyType;
     private $_harmonyLevel;
     private $_size = array();
-    private $_itemSize = self::ITEM_SIZE_20;
-    private $_storage;
+    private static $_itemSize = self::ITEM_SIZE_20;
+    private static $_storage;
 
     public function __construct($hex = null) {
         if ($hex !== null) {
@@ -173,6 +173,14 @@ class Item {
         }
     }
 
+    public function getWidth() {
+        return $this->_size['x'];
+    }
+
+    public function getHeight() {
+        return $this->_size['y'];
+    }
+
     public function setAncient($ancient) {
         $this->_ancient = $ancient;
         return $this;
@@ -227,28 +235,26 @@ class Item {
         return $this->_sockets;
     }
 
-    public function setItemSize($size) {
-        $this->_itemSize = $size;
-        return $this;
+    public static function setItemSize($size) {
+        self::$_itemSize = $size;
     }
 
-    public function getItemSize() {
-        return $this->_itemSize;
+    public static function getItemSize() {
+        return self::$_itemSize;
     }
-    
-    public function setStorage(AbstractStorage $storage) {
-        $this->_storage = $storage;
-        return $this;
+
+    public static function setStorage(AbstractStorage $storage) {
+        self::$_storage = $storage;
     }
-    
-    public function getStorage() {
-        return $this->_storage;
+
+    public static function getStorage() {
+        return self::$_storage;
     }
 
     public function isHexEmpty() {
         return strtoupper($this->getHex()) === str_repeat('F', $this->getItemSize()) || $this->getHex() === str_repeat('0', $this->getItemSize());
     }
-    
+
     public function getExcellentName($index) {
         $names = $this->getExcellentsName();
         if (isset($names[$index])) {
@@ -256,7 +262,7 @@ class Item {
         }
         return '';
     }
-    
+
     public function getExcellentsName() {
         $names = array();
         $options = ItemUtil::getExcellentsName($this->getId(), $this->getIndex());
@@ -270,7 +276,7 @@ class Item {
 
         return $names;
     }
-    
+
     public function parse() {
         if ($this->isHexEmpty()) {
             return;
@@ -279,16 +285,18 @@ class Item {
         $parse = new ParseHex($this->getHex());
 
         $this->setId($parse->getId())
-                ->setIndex($parse->getIndex())
-                ->setUnique($parse->getUnique())
-                ->setLevel($parse->getLevel())
-                ->setOption($parse->getOption())
-                ->setSkill($parse->getSkill())
-                ->setLuck($parse->getLuck())
-                ->setDurability($parse->getDurability())
-                ->setExcellents($parse->getExcellents())
-                ->setSerial($parse->getSerial())
-                ->update();
+            ->setIndex($parse->getIndex())
+            ->setUnique($parse->getUnique())
+            ->setLevel($parse->getLevel())
+            ->setOption($parse->getOption())
+            ->setSkill($parse->getSkill())
+            ->setLuck($parse->getLuck())
+            ->setDurability($parse->getDurability())
+            ->setExcellents($parse->getExcellents())
+            ->setSerial($parse->getSerial())
+            ->update();
+
+        return $this;
     }
 
     public function toArray() {
@@ -307,7 +315,11 @@ class Item {
                 'durability' => $this->getDurability(),
                 'excellents' => $this->getExcellents(),
                 'serial' => $this->getSerial(),
-                'ancient' => $this->getAncient()
+                'ancient' => $this->getAncient(),
+                'refine' => $this->getRefine(),
+                'sockets' => $this->getSockets(),
+                'harmonyType' => $this->getHarmonyType(),
+                'harmonyLevel' => $this->getHarmonyLevel()
             );
         }
         return $item;
@@ -317,12 +329,11 @@ class Item {
         if (!$this->getStorage()) {
             throw new \RuntimeException('Storage class not found');
         }
-        
+
         $item = $this->getStorage()->getItem($this->getIndex(), $this->getId());
 
-
         $this->setName($item['name'])
-                ->setSize($item['width'], $item['height']);
+            ->setSize($item['width'], $item['height']);
 
         if ($this->getDurability() === null) {
             $this->setDurability($item['durability']);
@@ -351,5 +362,9 @@ class Item {
         $this->_serial = null;
         $this->_ancient = null;
         $this->_size = array();
+        $this->_refine = null;
+        $this->_sockets = null;
+        $this->_harmonyType = null;
+        $this->_harmonyLevel = null;
     }
 }

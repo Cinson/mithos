@@ -2,8 +2,6 @@
 
 namespace Mithos\Item\Storage;
 
-use Mithos\Item\Storage\AbstractStorage;
-
 class ItemKOR extends AbstractStorage {
 
     protected function parse() {

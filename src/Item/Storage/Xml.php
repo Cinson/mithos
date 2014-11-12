@@ -2,8 +2,6 @@
     
 namespace Mithos\Item\Storage;
 
-use Mithos\Item\Storage\AbstractStorage;
-
 class Xml extends AbstractStorage {
 
     protected function parse() {
