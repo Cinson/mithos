@@ -3,7 +3,6 @@
 /**
  * @created Wolf, adaptado Flavio Hernandes
  */
-
 namespace Mithos\Item;
 
 class Container {
@@ -44,6 +43,21 @@ class Container {
                 $this->_put($item->parse(), $cords['x'], $cords['y']);
             }
         }
+    }
+
+    public function generate() {
+        $temp = array();
+        for ($y = 0; $y <= $this->getHeight(); $y++) {
+            for ($x = 0; $x <= $this->getWidth(); $x++) {
+                $item = $this->getItem($x, $y);
+                if ($item == null) {
+                    $temp[] = str_repeat('f', Item::getItemSize());
+                } else {
+                    $temp[] = $item->generate();
+                }
+            }
+        }
+        return join('', $temp);
     }
 
     public function insert(Item $item) {
@@ -106,7 +120,7 @@ class Container {
         if ($x < 0 || $y < 0 || $x >= $this->getWidth() || $y >= $this->getHeight()) {
             return null;
         }
-        return $this->_item[$x][$y];
+        return $this->_items[$x][$y];
     }
 
     public function hasItem($x, $y) {

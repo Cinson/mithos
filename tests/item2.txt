@@ -1,0 +1,543 @@
+vv/// Mu Online - Item(Kor).txt ;	                    
+/// Versao 97d+99	;				
+/// Foram adicionados 8 novos itens              													
+/// Nuna ~~ Mu Dark Knight http://mudk.no-ip.info:8090              	                        
+///													
+//Index 	x	y	sirial	drop	Name			level	DamMin	DamMax	Speed	Dur	MagDur	Str	Agil	�渶���	����	ELF	���˻�
+0																		
+0	1	2	1	1	1	"Kris"			6	6	11	50	20	0	40	40	1	1	1	1
+1	1	3	1	1	1	"Short Sword"		3	3	7	20	22	0	60	0	1	1	1	1
+2	1	3	1	1	1	"Rapier"		9	9	15	40	23	0	50	40	0	1	1	1
+3	1	3	1	1	1	"Katache"		16	16	26	35	27	0	80	40	0	1	0	1
+4	1	3	1	1	1	"Scimitar"		12	12	18	30	24	0	60	40	0	1	0	1
+5	1	3	1	1	0	"Blade [MW]"		110	130	130	50	39	80	130	130	1	1	1	1
+6	1	3	1	1	1	"Gladius"		20	20	30	20	30	0	110	0	0	1	1	1
+7	1	3	1	1	0	"Falchion [MW]"		110	130	130	50	39	80	150	150	1	1	1	1
+8	1	3	1	1	1	"Serpent Borg"		30	30	40	20	36	0	130	0	0	1	0	1
+9	2	3	1	1	1	"Warrior Sword" 	235	255	255	220	80	80	255	255	2	2	2	1
+10	2	4	1	1	1	"Light Saber"		40	47	61	25	50	0	80	60	0	1	1	1
+11	2	3	1	1	1	"Legendary Sword"	44	56	72	20	54	0	120	0	0	1	0	1
+15	2	3	1	1	1	"Giant Sword"		52	60	85	20	60	0	140	0	0	1	0	1
+12	2	3	1	1	1	"Helical Sword"		56	73	98	25	66	0	140	0	0	1	0	1
+13	1	3	1	1	1	"Double Blade"		48	48	56	30	43	0	70	70	0	1	1	1
+14	1	3	1	1	1	"Lightning Sword"	59	59	67	30	50	0	90	50	0	1	1	1
+16	1	4	1	1	1	"Destruction Sword"	82	82	90	35	84	0	160	60	0	1	0	1
+17	2	4	1	1	1	"Spirit Sword"		104	136	162	40	89	0	180	50	0	2	0	0
+18	1	3	1	1	1	"Thunder Sword"		105	120	158	40	86	0	180	50	0	0	0	1
+19	1	4	1	1	1	"Dragon Sword"		86	120	130	35	84	0	140	50	0	1	0	1
+20 	1 	4	1 	1 	1 	"Blade of Devourer"	106 	140 	150 	40	93	0 	175 	75	0 	2 	0 	0
+21 	1 	4	1 	1 	0 	"Sword of Fantastic"	235 	255 	255 	220	80	80 	255 	255	2 	2	2 	1
+
+//Novos Itens
+
+22	1	3	1	1	0	"Daybreak Sword"	111	205	220	60	93	0	135	62	1	1	1	1
+23	1	3	1	1	0	"NeW Bone Blade [MW]"	250	210	220	60	93	80	220	210	1	1	1	1
+24	1	3	1	1	0	"Sword Dancer"		113	215	235	60	93	0	135	62	1	1	1	1
+25	1	3	1	1	1	"ScoutHammer"		114	220	240	60	93	0	135	62	1	1	1	1
+26	1	3	1	1	1	"Bersek Axe"		115	230	250	60	93	0	135	62	1	1	1	1
+27	1	3	1	1	1	"Soram Hammer"		116	250	250	60	93	0	135	62	1	1	1	1
+28 	1 	3	1 	1 	0 	"Kundan Blade" 		110 	220 	220 	60	93	0 	135 	62	1 	1	1 	1
+29 	1 	3	1 	1 	0 	"Glory Sword [MW]" 	230 	255 	255 	220	93	80 	255 	255	1 	1	1 	1
+30 	1 	3	1 	1 	0 	"Balgass Minion" 	110 	230 	230 	65	95	0 	140 	70	1 	1	1 	1
+31 	1 	4	1 	1 	1 	"DeathBroad" 		100 	104 	130 	35	93	93 	135 	62	0 	0 	0 	1
+end																		
+
+//Index 	x	y	sirial	drop	Name			level	DamMin	DamMax	Speed	Dur	MagDur	Str	Agil	�渶���	����	����	���˻�
+1																		
+0	1	3	1	1	1	"Small Axe"		1	1	6	20	18	0	50	0	1	1	1	1
+1	1	3	1	1	1	"Hand Axe"		4	4	9	30	20	0	70	0	1	1	1	1
+2	1	3	1	1	1	"Double Axe"		14	14	24	20	26	0	90	0	0	1	0	1
+3	1	3	1	1	1	"Tomahawk"		18	18	28	30	28	0	100	0	0	1	0	1
+4	1	3	1	1	1	"Fairy Axe"		26	26	38	40	32	0	50	70	1	0	1	1
+5	2	3	1	1	1	"Battle Axe"		30	36	44	20	36	0	120	0	0	1	1	1
+6	2	3	1	1	1	"Nikkea Axe"		34	38	50	30	44	0	130	0	0	1	1	1
+7	2	3	1	1	1	"Larkan Axe"		46	54	67	25	55	0	140	0	0	1	0	1
+8	2	3	1	1	1	"Crescent Axe"		54	69	89	30	65	0	100	40	1	1	0	1
+
+//Novos Itens
+
+9	1	3	1	1	1	"Hero Axe"		250	248	248	80	93	0	250	250	2	2	2	1
+10	1	3	1	1	1	"Crusher Axe"		250	248	248	130	93	0	250	250	2	2	2	1
+11	1	3	1	1	1	"Mon Axe"		250	250	250	140	93	0	255	255	2	2	2	1
+12	1	3	1	1	1	"Furious Beast Axe"	250	255	255	160	93	0	255	255	2	2	2	1
+13	1	3	1	1	1	"Bersek Axe"		190	255	255	170	93	0	255	255	2	2	2	1
+14	1	3	1	1	1	"War Axe"		210	255	255	190	93	0	255	255	2	2	2	1
+15	1	4	1	1	1	"Revolution Axe"	250	255	255	210	160	0	255	255	2	2	2	1
+16	1	4	1	1	1	"Fire Sword"		225	255	255	215	80	90	255	255	2	2	2	1
+19	1	3	1	1	1	"Lendary Sword"		230	255	255	220	80	90	255	255	2	2	2	1
+20	1	3	1	1	0	"Lord Imperial Sword"	240	255	255	225	80	90	255	255	2	2	2	1
+21	1	3	1	1	0	"Revolution Sword"	255	255	255	230	80	90	255	255	2	2	2	1
+22	1	3	1	1	0	"Lord Imperial Axe"	250	255	255	235	80	90	255	255	2	2	2	1
+23 	1	4 	1 	1 	1 	"Dragon EyeSword (rar)"	250 	255 	255 	245 	80 	90 	255 	255	1 	1 	1 	1
+24 	1	4 	1 	1 	1 	"Mouth Sword"		250 	255 	255	245 	80 	90 	255 	255	1 	1 	1 	1
+25 	1	4 	1 	1 	1 	"Extreme Sword (Rel)"	250 	255 	255 	245 	80 	90 	255 	255	1 	1 	1 	1
+26 	1	4 	1 	1 	1 	"Destiny Sword (Rara)"	250 	255 	255 	245 	80 	90 	255 	255	1 	1 	1 	1
+27	1	4	1	1	1	"Axe of Hero (limi)"	250	255	255	245	80	90	255	255	1	1	1	1
+28	1	4	1	1	0	"Themido Sword"		150	255	255	245	80	90	255	255	1	1	1	1
+29	1	4	1	1	0	"Ixion Sword"		150	255	255	245	80	90	255	255	1	1	1	1
+30	1	4	1	1	0	"NOVA AXE01"		150	255	255	245	80	90	255	255	1	1	1	1
+31	1	4	1	1	0	"NOVA AXE02"		150	255	255	245	80	90	255	255	1	1	1	1
+
+
+
+end																	
+
+//Index 	x	y	sirial	drop	Name			level	DamMin	DamMax	Speed	Dur	MagDur	Str	Agil	�渶���	����	����	���˻�
+2																		
+0	1	3	1	1	1	"Mace"			7	7	13	15	21	0	100	0	0	1	0	1
+1	1	3	1	1	1	"Morning Star"		13	13	22	15	25	0	100	0	0	1	0	1
+2	1	3	1	1	1	"Iron Hammer"		22	22	32	15	32	0	80	50	0	1	0	1
+3	2	3	1	1	1	"Great Hammer"		38	45	56	15	50	0	150	0	0	1	0	1
+4	2	3	1	1	1	"Crystal Mace"		66	78	107	30	72	0	130	0	1	1	1	1
+5	2	4	1	1	1	"Crystal Sword"		72	84	115	40	76	0	130	70	1	1	1	1
+6	2	4	1	1	0	"Chaos Axe"		75	102	130	35	80	0	140	50	0	1	0	1
+7 	1	3 	1 	1 	1 	"Elemental Mace"	90 	62 	80 	50 	50 	0 	15 	42 	0 	0 	2 	0
+8 	1	3 	1 	1 	1 	"Skeleton Mace"		90 	112 	135 	45 	80 	0 	155 	85 	0 	2 	0 	1
+9 	1	3 	1 	1 	1 	"Slayer's Mace"		100 	135 	150 	45 	80 	0 	170 	120 	0 	2 	0 	1
+10 	1	3 	1 	1 	1 	"WesT Sword"		235 	255 	255 	130 	80 	90 	255 	255 	2 	2 	2 	1
+11 	1	3 	1 	1 	1 	"Mace of Gimli"		117 	165 	190 	50 	80 	0 	235 	170 	0 	2 	0 	1
+12 	1	4 	1 	1 	1 	"Phantom Mace" 		127 	210 	240 	55 	80 	50 	315 	230 	2 	2 	2 	1
+13 	1	3 	1 	1 	1 	"Mace of the King"	125 	200 	210 	55 	80 	0 	300 	200	0 	2 	0 	1
+
+//Novos Itens
+
+14	1	3	1	1	0	"Frost Mace"		180	235	240	85	93	0	240	240	2	2	2	1
+15	1	3	1	1	0	"Xinha Mace"		190	255	255	100	93	0	250	250	2	2	2	1
+16	1	4	1	1	0	"Nataliq Mace"		220	255	255	120	170	0	255	255	2	2	2	1
+
+17	1	3	1	1	1	"Axe of Redemption"	225	255	255	125	170	0	255	255	2	2	2	1
+
+18	1	3	1	1	0	"Lord Imperial Mace"	230	255	255	130	175	0	255	255	2	2	2	1
+
+19	1	4	1	1	1	"Hammer of Less"	250	255	255	245	80	90	255	255	1	1	1	1
+20 	1 	4	1 	1 	0 	"Fantastic Sword"	235 	255 	255 	220	80	80 	255 	255	1 	1	1 	1
+21	1	4	1	1	0	"Cataclysm Blade"	150	255	255	245	80	90	255	255	1	1	1	1
+22	1	4	1	1	0	"Sword Blue King"	150	255	255	245	80	90	255	255	1	1	1	1
+23	1	4	1	1	0	"Big Bone Blade"	150	255	255	245	80	90	255	255	1	1	1	1
+24	1	4	1	1	0	"Dragonica Sword"	150	255	255	245	80	90	255	255	1	1	1	1
+25	1	4	1	1	0	"Darkness Sword"	150	255	255	245	80	90	255	255	1	1	1	1
+26	1	4	1	1	0	"Great Sword"		150	255	255	245	80	90	255	255	1	1	1	1
+27	1	4	1	1	0	"Giant Scimitar Sword"	150	255	255	245	80	90	255	255	1	1	1	1
+28	1	4	1	1	0	"Viper Blade Sword"	150	255	255	245	80	90	255	255	1	1	1	1
+29	1	4	1	1	0	"NOVA MACE07"		150	255	255	245	80	90	255	255	1	1	1	1
+30	1	4	1	1	0	"NOVA MACE08"		150	255	255	245	80	90	255	255	1	1	1	1
+31	1	4	1	1	0	"NOVA MACE09"		150	255	255	245	80	90	255	255	1	1	1	1
+end																		
+
+//Index 	x	y	sirial	drop	Name			level	DamMin	DamMax	Speed	Dur	MagDur	Str	Agil	�渶���	����	����	���˻�
+3																		
+0	2	4	1	1	1	"Light Spear"		42	50	63	25	56	0	60	70	0	1	1	1
+1	2	4	1	1	0	"Spear of Soul (AT)"	230	250	250	80	150	100	250	250	1	1	1	1
+2	2	4	1	1	1	"Dragon Lance"		15	21	33	30	34	0	70	50	0	1	1	1
+3	2	4	1	1	1	"Big Pike"		29	35	43	25	44	0	90	30	0	1	1	1
+4	2	4	1	1	0	"Spear of Dragon (AT)"	225	250	250	100	126	80	250	250	1	1	1	1
+5	2	4	1	1	1	"Double Halberd"	13	19	31	30	38	0	70	50	0	1	1	1
+6	2	4	1	1	1	"Halberd"		19	25	35	30	40	0	70	50	0	1	1	1
+7	2	4	1	1	1	"Bardiche"		37	42	54	30	54	0	80	50	0	1	1	1
+8	2	4	1	1	1	"Great Scythe"		54	71	92	25	68	0	90	50	0	1	1	1
+9	2	4	1	1	1	"Bill of Balrog"	63	76	102	25	74	0	80	50	0	1	1	1
+10 	2 	4	1 	1 	1 	"Dragon Spear" 	        92 	112 	140	45	85 	0 	170 	60	0 	2 	0 	0
+
+//Novos Items
+
+11	2	4	1	1	0	"Ice Storm Hammer"	225	250	250	200	150	0	250	250	1	1	1	1
+end
+
+4																		
+0	2	3	1	1	1	"Short Bow"		2	3	5	30	20	0	20	80	0	0	1	0
+1	2	3	1	1	1	"Bow"			8	9	15	30	24	0	30	90	0	0	1	0
+2	2	3	1	1	1	"Fairy Bow"		16	17	24	30	28	0	30	90	0	0	1	0
+3	2	3	1	1	1	"Battle Bow"		26	28	37	30	36	0	30	90	0	0	1	0
+4	2	4	1	1	1	"Sylph Wind Bow"	163	250	255	60	100	0	254	254	0	0	2	0
+5	2	4	1	1	1	"Light Bow"		56	58	72	40	48	0	30	100	0	0	1	0
+6	2	4	1	1	0	"Chaos Nature Bow"	75	77	102	35	68	0	40	150	0	0	1	0
+7	1	1	0	0	0	"Bolts"			0	0	0	0	255	0	0	0	0	0	1	0
+8	2	2	1	1	1	"Crossbow"		4	5	8	40	22	0	20	90	0	0	1	0
+9	2	2	1	1	1	"Gold Crossbow"		12	13	19	40	26	0	30	90	0	0	1	0
+10	2	2	1	1	1	"Arquebus"		20	22	30	40	31	0	30	90	0	0	1	0
+11	2	3	1	1	1	"Light Crossbow"	32	35	44	40	40	0	30	90	0	0	1	0
+12	2	3	1	1	1	"Serpent Crossbow"	48	50	66	40	45	0	30	100	0	0	1	0
+13	2	3	1	1	1	"Legendary Crossbow"	68	70	82	40	56	0	40	110	0	0	1	0
+14	2	3	1	1	1	"Dragon Crossbow"	72	74	98	30	60	0	50	130	0	0	1	0
+15	1	1	0	0	0	"Arrows"		0	0	0	0	255	0	0	0	0	0	1	0
+16	2	4	1	1	1	"Shadow Crossbow"	84	86	108	35	72	0	50	160	0	0	1	0
+17	2	4	1	1	1	"Giant Bow"		96	105	127	35	76	0	53	192	0	0	2	0
+18	2	3	1	1	0	"Giant Crossbow"	100	120	140	35	100	0	40	110	0	0	1	0
+19	2	3	1	1	0	"Bow of Ari Lyn (n)"	100	160	180	50	90	0	40	110	0	0	1	0
+20	2	3	1	1	0	"Bow Of Diness (n)"	100	200	220	50	90	0	40	110	0	0	1	0
+21	2	3	1	1	0	"Bow of Draconic (n)"	100	230	255	50	90	0	40	110	0	0	1	0
+end																		
+
+5																		
+0	1	3	1	1	1	"Skull Staff"		6	6	8	20	0	20	40	0	1	0	0	1
+1	2	3	1	1	1	"Angelic Staff"		18	20	24	25	0	38	50	0	1	0	0	1
+2	2	3	1	1	1	"Serpent Staff"		30	34	36	25	0	50	50	0	1	0	0	1
+3	2	4	1	1	1	"Lightning Staff"	42	46	50	25	0	60	40	10	1	0	0	1
+4	2	4	1	1	1	"Gorgon Staff"		52	58	64	25	0	65	50	0	1	0	0	1
+5	1	4	1	1	1	"Legendary Staff"	59	59	62	20	0	66	50	0	1	0	0	1
+6	1	4	1	1	1	"Resurrection Staff"	70	70	78	20	0	70	60	10	1	0	0	1
+7	2	4	1	1	0	"Chaos Lightning Staff"	75	94	97	30	0	70	60	10	1	0	0	1
+8	2	4	1	1	1	"Unicorn Staff"		90	101	109	30	0	85	60	10	1	0	0	1
+9	1	4	1	1	1	"Crystal Staff"		100	92	96	30	0	91	52	16	2	0	0	0
+10	1	4	1	1	1	"Dragon Staff"		104	114	120	20	0	91	36	4	1	0	0	1
+11	1	4	1	1	1	"Kundun Staff"		117	130	140	35	0	100	56	20	1	0	0	1
+
+//Novos Itens
+//Index 	x	y	sirial	drop	Name			level	DamMin	DamMax	Speed	Dur	MagDur	Str	Agil	�渶���	����	����	���˻�
+12	1	4	1	1	1	"Grand Viper Staff"	150	250	250	70	80	90	250	250	2	0	0	0
+13	1	3	1	1	0	"Mistery Staff"		200	250	250	80	93	90	250	250	2	0	0	0
+14	1	3	1	1	0	"Lendary Staff"		210	250	250	85	93	90	250	250	2	0	0	0
+15	1	3	1	1	0	"Infernal Staff"	215	250	250	90	93	90	250	250	2	0	0	1
+16	1	4	1	1	0	"Revolution Sword 02"	245	250	250	200	93	90	250	250	2	2	2	1
+
+17	1	3	1	1	0	"Lord Imperial Staff"	225	255	255	98	175	90	255	255	2	2	2	1
+
+18	1	4	1	1	1	"Warlock Staff"		150	255	255	245	80	90	255	255	1	1	1	1
+19	1	4	1	1	1	"Staff of Nemesis Tear"	150	255	255	245	80	90	255	255	1	1	1	1
+20	1	4	1	1	1	"Staff of Shadow"	150	255	255	245	80	90	255	255	1	1	1	1
+21	1	4	1	1	1	"Staff of Sunshine"	150	255	255	245	80	90	255	255	1	1	1	1
+22	1	4	1	1	1	"King Staff"		150	255	255	245	80	90	255	255	1	1	1	1
+23	1	4	1	1	1	"Titanium Staff"	150	255	255	245	80	90	255	255	1	1	1	1
+24	1	4	1	1	1	"Staff 04"		150	255	255	245	80	90	255	255	1	1	1	1
+25	1	4	1	1	1	"Staff 05"		150	255	255	245	80	90	255	255	1	1	1	1
+26	1	4	1	1	1	"Staff 06"		150	255	255	245	80	90	255	255	1	1	1	1
+27	1	4	1	1	1	"Staff 07"		150	255	255	245	80	90	255	255	1	1	1	1
+28	1	4	1	1	1	"Staff 08"		150	255	255	245	80	90	255	255	1	1	1	1
+29	1	4	1	1	1	"Staff 09"		150	255	255	245	80	90	255	255	1	1	1	1
+30	1	4	1	1	1	"Staff 10"		150	255	255	245	80	90	255	255	1	1	1	1
+31	1	4	1	1	1	"Staff 11"		150	255	255	245	80	90	255	255	1	1	1	1
+end																		
+
+//Index	x	y	sirial		drop	Name			Level(Bio)	Defence		Dur		Str	Agil				
+6																
+0	2	2	1	1	1	"Round Shield"		3	1			22		70	0	1	1	1	1
+1	2	2	1	1	1	"Horn Shield"		9	3			28		100	0	0	1	0	1
+2	2	2	1	1	1	"Kite Shield"		12	4			32		110	0	0	1	0	1
+3	2	2	1	1	1	"Fairy Shield"		21	8			36		30	100	0	0	1	0
+4	2	2	1	1	1	"Buckler"		6	2			24		80	0	1	1	1	1
+5	2	2	1	1	1	"Dragon Slayer"		35	10			44		100	40	0	1	0	1
+6	2	2	1	1	1	"Skull Shield"		15	5			34		110	0	1	1	1	1
+7	2	2	1	1	1	"Spike Shield"		30	9			40		130	0	0	1	0	1
+8	2	2	1	1	1	"Tower Shield"		40	11			46		130	0	0	1	1	1
+9	2	2	1	1	1	"Iron Shield"		25	8			38		120	0	0	1	0	1
+10	2	2	1	1	1	"Big Round Shield"	18	6			35		120	0	0	1	0	1
+11	2	2	1	1	1	"Serpent Shield"	45	12			48		130	0	0	1	1	1
+12	2	2	1	1	1	"Bronze Shield"		54	13			52		140	0	0	1	0	1
+13	2	2	1	1	1	"Chaos Shield"		60	14			60		120	40	0	1	0	1
+14	2	3	1	1	1	"Legendary Shield"	48	7			50		80	25	1	0	1	1
+15 	2	3	1 	1 	1 	"Grand Soul Shield" 	74 	12			55 		70 	23	2 	0 	0 	0
+16 	2 	2	1 	1 	1 	"Elemental Shield" 	66 	11 			51 		30 	60 	0 	0	2 	0
+
+//Novos Itens
+
+17 	2	2	1	1	0	"Revolution Shield" 	255 	200 			150 		255 	255 	2	2	2 	1
+18 	2	2	1	1	1	"West Shield"   	100 	35 			93 		160 	80 	1	1	1 	1
+19 	2	2	1	1	0	"Lord Imperial Shield" 	250 	200 			160 		255 	255 	2	2	2 	1
+20	2	2	1	1	0	"Apocalipse Shield"	199	30			93		129	60	0	2	0	0
+
+21	2	2	1	1	1	"Glory Shield [MW]"	250	200			130		255	255	2	2	2	1
+23	2	2	1	1	1	"Devil Shield"		230	160			140		255	255	2	2	2	1
+24	2	2	1	1	0	"WesT Shield"		255	180			150		255	255	2	2	2	1
+25	2	2	1	1	0	"Nataliq Shield"	250	200			160		255	255	2	2	2	1
+26	2	2	1	1	1	"Fire Shield"		255	205			170		255	255	2	2	2	1
+27	2	2	1	1	0	"Illidan Shield"	255	210			180		255	255	2	2	2	1
+28	2	2	1	1	1	"Extreme Shield (raro)"	255	255			95		255	255	1	1	1	1
+29	2	2	1	1	1	"Themido Shield"	255	255			95		255	255	1	1	1	1
+30	2	2	1	1	1	"Shield 01"		255	255			95		255	255	1	1	1	1
+31	2	2	1	1	1	"Shield 02"		255	255			95		255	255	1	1	1	1
+
+end																		
+
+//Index	x	y	sirial		drop	Name			Level	Defence	MagDef		Dur		Str	Agil				
+7																		
+0	2	2	1	1	1	"Bronze Helm"		16	9	0		34		80	20	0	1	0	0
+1	2	2	1	1	1	"Dragon Helm"		57	24	0		68		120	30	0	1	0	0
+2	2	2	1	1	1	"Pad Helm"		5	4	0		28		20	0	1	0	0	0
+3	2	2	1	1	1	"Legendary Helm"	50	18	0		42		30	0	1	0	0	0
+4	2	2	1	1	0	"WesT Helm"		190	150	0		117		150	150	2	2	2	1
+5	2	2	1	1	1	"Leather Helm"		6	5	0		30		80	0	0	1	0	0
+6	2	2	1	1	1	"Scale Helm"		26	12	0		40		110	0	0	1	0	0
+7	2	2	1	1	0	"Ventura Mask"		165	125	0		93		112	125	2	2	2	1
+8	2	2	1	1	1	"Brass Helm"		36	17	0		44		100	30	0	1	0	0
+9	2	2	1	1	1	"Iron Helm"		46	20	0		50		130	0	0	1	0	0
+10	2	2	1	1	1	"Vine Helm"		6	4	0		22		30	60	0	0	1	0
+11	2	2	1	1	1	"Silk Helm"		16	8	0		26		30	70	0	0	1	0
+12	2	2	1	1	0	"Warrior Helm"		195	150	0		117		140	150	2	2	2	1
+13	2	2	1	1	0	"Eclipse Helm"		175	130	0		117		119	130	2	2	2	1
+14	2	2	1	1	0	"Satanic Helm (E)"	225	220	0		117		140	150	2	2	2
+0
+//15
+16	2	2	1	1	1	"Black Dragon Helm"	82	30	0		74		170	60	0	1	0	0
+17	2	2	1	1	1	"Phoenix Helm"		92	39	0		80		205	62	0	2	0	0
+18	2	2	1	1	1	"Soul Helm"		81	27	0		67		59	20	2	0	0	0
+19	2	2	1	1	0	"Themido Helm (Reli)"	90	255	0		110		88	112	2	2	2	1
+//20
+21	2	2	1	1	1	"Red Phoenix Helm"	125	69	0		95		325	95	0	2	0	0
+22	2	2	1	1	1	"DaRK Side Helm"	117	56	0		90		105	50	2	0	0	0
+//23
+24	2	2	1	1	1	"Nature Helmet"		110	39	0		80		125	65	0	0	2	0
+25	2	2	1	1	0	"Fantastic Helm"	185	140	0		117		130	140	2	2	2	1
+26	2	2	1	1	0	"Venon Mist Helm" 	155	120	0		117		97	118	2	2	2	1
+27	2	2	1	1	1	"Magus Mask"		115	58	0		87		275	85	0	1	0	0
+28	2	2	1	1	0	"Lord Imperial Helm"	190	150	0		117		140	150	2	2	2	0
+
+//Novos Itens
+
+29	2	2	1	1	1	"Dragon Knight Helm"	135	86	0		102		79	105	2	2	2	1
+30	2	2	1	1	1	"Hades Helm"		145	100	0		110		88	112	2	2	2	1
+//30	2	2	1	1	0	"Themido Helm (Reli)"	90	255	0		110		88	112	2	2	2	1
+//31	2	2	1	1	0	"Phanton Helm"		220	220	30		200		250	230	2	2	2	1
+end																		
+																		
+8																		
+0	2	2	1	1	1	"Bronze Armor"		18	14	0		34		80	20	0	1	0	1
+1	2	3	1	1	1	"Dragon Armor"		59	37	0		68		120	30	0	1	0	1
+2	2	2	1	1	1	"Pad Armor"		10	7	0		28		30	0	1	0	0	1
+3	2	2	1	1	1	"Legendary Armor"	56	22	0		42		40	0	1	0	0	1
+4	2	2	1	1	0	"WesT Armor"		199	210	0		140		150	220	2	2	2	1
+5	2	3	1	1	1	"Leather Armor"		10	10	0		30		80	0	0	1	0	1
+6	2	2	1	1	1	"Scale Armor"		28	18	0		40		110	0	0	1	0	1
+7	2	3	1	1	0	"Ventura Armor"		180	195	0		145		135	210	2	2	2	1
+8	2	2	1	1	1	"Brass Armor"		38	22	0		44		100	30	0	1	0	1
+9	2	2	1	1	1	"Iron Armor"		48	30	0		50		130	0	0	1	0	1
+10	2	2	1	1	1	"Vine Armor"		10	8	0		22		30	60	0	0	1	0
+11	2	2	1	1	1	"Silk Armor"		20	12	0		26		30	70	0	0	1	0
+12	2	2	1	1	0	"Warrior Armor"		200	215	0		170		155	230	2	2	2	1
+13	2	2	1	1	0	"Eclipse Armor"		183	190	0		145		137	212	2	2	2	1
+14	2	2	1	1	0	"Satanic Armor (E)"	230	235	0		160		155	230	2	2	2	0
+15	2	3	1	1	1	"Unicorn Armor"		80	44	0		80		150	70	0	0	0	1
+16	2	3	1	1	1	"Black Dragon Armor"	90	48	0		74		170	60	0	1	0	0
+17	2	3	1	1	1	"Phoenix Armor"		100	59	0		80		214	65	0	2	0	0
+18	2	3	1	1	1	"Soul Armor"		91	33	0		67		59	20	2	0	0	0
+19	2	3	1	1	0	"Themido Armor (RELI)"	90	255	0		116		110	185	2	2	2	1
+20	2	3	1	1	1	"Thunder Armor"		107	55	0		82		170	70	0	0	0	1
+21	2	3	1	1	1	"Red Phoenix Armor"	127	80	0		96		340	170	0	2	0	0
+22	2	3	1	1	1	"DaRK Side Armor"	127	61	0		78		110	59	2	0	0	0
+23	2	3	1	1	1	"Hurricane Armor"	121	74	0		88		280	90	0	0	0	1
+24	2	2	1	1	1	"Nature Armor"		117	49	0		82		75	90	0	0	2	0
+25	2	3	1	1	0	"Fantastic Armor"	189	200	0		150		145	220	2	2	2	1
+26	2	3	1	1	0	"Venon Mist Armor"	172	195	0		140		130	205	2	2	2	1
+27	2	3	1	1	1	"Magus Armor"		117	71	0		86		290	135	0	1	0	1
+28	2	3	1	1	0	"Lord Imperial Armor"	199	210	0		160		155	230	2	2	2	1
+
+//Novos Itens
+																		
+29	2	3	1	1	1	"Dragon Knight Armor"	142	110	0		106		100	175	2	2	2	1
+30	2	3	1	1	1	"Hades Armor"		152	145	0		116		110	185	2	2	2	1
+//30	2	3	1	1	0	"Themido Armor (RELI)"	90	255	0		116		110	185	2	2	2	1
+//31	2	3	1	1	0	"Phantom Armor"		155	120	30		110		250	230	2	2	2	1
+end																		
+																		
+9																		
+0	2	2	1	1	1	"Bronze Pants"		15	10	0		34		80	20	0	1	0	1
+1	2	2	1	1	1	"Dragon Pants"		55	26	0		68		120	30	0	1	0	1
+2	2	2	1	1	1	"Pad Pants"		8	5	0		28		30	0	1	0	0	1
+3	2	2	1	1	1	"Legendary Pants"	53	20	0		42		40	0	1	0	0	1
+4	2	2	1	1	0	"WesT Pants"		200	155	0		130		105	170	2	2	2	1
+5	2	2	1	1	1	"Leather Pants"		8	7	0		30		80	0	0	1	0	1
+6	2	2	1	1	1	"Scale Pants"		25	14	0		40		110	0	0	1	0	1
+7	2	2	1	1	0	"Ventura Pants"		182	135	0		130		86	155	2	2	2	1
+8	2	2	1	1	1	"Brass Pants"		35	18	0		44		100	30	0	1	0	1
+9	2	2	1	1	1	"Iron Pants"		45	22	0		50		130	0	0	1	0	1
+10	2	2	1	1	1	"Vine Pants"		8	6	0		22		30	60	0	0	1	0
+11	2	2	1	1	1	"Silk Pants"		18	10	0		26		30	70	0	0	1	0
+12	2	2	1	1	0	"Warrior Pants"		203	160	0		150		110	175	2	2	2	1
+13	2	2	1	1	0	"Eclipse Pants"		185	137	0		132		90	157	2	2	2	1
+14	2	2	1	1	0	"Satanic Pants (E)"	223	220	0		150		110	175	2	2	2	0
+15	2	2	1	1	1	"Unicorn Pants"		74	34	0		80		150	70	0	0	0	1
+16	2	2	1	1	1	"Black Dragon Pants"	84	40	0		74		170	60	0	1	0	0
+17	2	2	1	1	1	"Phoenix Pants"		96	50	0		80		207	63	0	2	0	0
+18	2	2	1	1	1	"Soul Pants"		86	30	0		67		59	20	2	0	0	0
+19	2	2	1	1	1	"Themido Pants (reli)"	90	255	0		110		65	130	2	2	2	1
+20	2	2	1	1	1	"Thunder Pants"		99	44	0		82		150	70	0	0	0	1
+21	2	2	1	1	1	"Red Phoenix Pants"	131	75	0		95		290	100	0	2	0	0
+22	2	2	1	1	1	"DaRK Side Pants"	115	57	0		88		100	50	2	0	0	0
+23	2	2	1	1	1	"Hurricane Pants"	117	64	0		90		220	110	0	0	0	1
+24	2	2	1	1	1	"Nature Pants"		97	43	0		82		90	125	0	0	2	0
+25	2	2	1	1	0	"Fantastic Pants"	190	145	0		140		100	165	2	2	2	1
+26	2	2	1	1	0	"Venon Mist Pants"	174	130	0		130		84	150	2	2	2	1
+27	2	2	1	1	1	"Magus Pants"		118	64	0		88		235	77	0	1	0	1
+28	2	2	1	1	0	"Lord Imperial Pants"	200	155	0		150		110	175	2	2	2	1
+
+//Novos Itens
+
+29	2	2	1	1	1	"Dragon Knight Pants"	142	88	0		100		53	120	2	2	2	1
+30	2	2	1	1	1	"Hades Pants"		151	100	0		110		65	130	2	2	2	1
+//30	2	2	1	1	1	"Themido Pants (reli)"	90	255	0		110		65	130	2	2	2	1
+//31	2	2	1	1	0	"Phantom Pants"		155	120	0		110		250	230	2	2	2	1
+end																		
+																		
+10																		
+0	2	2	1	1	1	"Bronze Gloves"		13	4	4		34		80	20	0	1	0	1
+1	2	2	1	1	1	"Dragon Gloves"		52	14	6		68		120	30	0	1	0	1
+2	2	2	1	1	1	"Pad Gloves"		3	2	0		28		20	0	1	0	0	1
+3	2	2	1	1	1	"Legendary Gloves"	44	11	0		42		20	0	1	0	0	1
+4	2	2	1	1	0	"WesT Gloves"		185	155	50		135		95	165	2	2	2	1
+5	2	2	1	1	1	"Leather Gloves"	4	2	8		30		80	0	0	1	0	1
+6	2	2	1	1	1	"Scale Gloves"		22	7	10		40		110	0	0	1	0	1
+7	2	2	1	1	0	"Ventura Gloves"	165	135	40		137		72	142	2	2	2	1
+8	2	2	1	1	1	"Brass Gloves"		32	9	8		44		100	30	0	1	0	1
+9	2	2	1	1	1	"Iron Gloves"		42	12	4		50		130	0	0	1	0	1
+10	2	2	1	1	1	"Vine Gloves"		4	2	4		22		30	60	0	0	1	0
+11	2	2	1	1	1	"Silk Gloves"		14	4	8		26		30	70	0	0	1	0
+12	2	2	1	1	0	"Warrior Gloves"	190	160	10		155		95	165	2	2	2	1
+13	2	2	1	1	0	"Eclipse Gloves"	168	138	40		138		75	145	2	2	2	1
+14	2	2	1	1	0	"Satanic Gloves (E)"	225	220	100		155		95	165	2	2	2	0
+15	2	2	1	1	1	"Unicorn Gloves"	70	20	6		80		150	70	0	0	0	1
+16	2	2	1	1	1	"Black Dragon Gloves"	76	22	6		74		170	60	0	1	0	0
+17	2	2	1	1	1	"Phoenix Gloves"	86	33	6		80		205	63	0	2	0	0
+18	2	2	1	1	1	"Soul Gloves"		70	20	5		67		49	10	2	0	0	0
+19	2	2	1	1	0	"Themido Gloves (reli)"	90     255	120		115		50	130	2	2	2	1
+20	2	2	1	1	1	"Thunder Gloves"	88	29	7		82		150	70	0	0	0	1
+21	2	2	1	1	1	"Red Phoenix Gloves"	125     65	15		82		280	110	0	2	0	0
+22	2	2	1	1	1	"DaRK Side Gloves"	110     44	15		82		95 	60	2	0	0	0
+23	2	2	1	1	1	"Hurricane Gloves"	99      49	15		82		210	100	0	0	0	1
+24	2	2	1	1	1	"Nature Gloves"		86      34	15		80		90	90	0	0	2	0
+25	2	2	1	1	0	"Fantastic Gloves"	175     145	45		145		85	155	2	2	2	1
+26	2	2	1	1	0	"Venon Mist Gloves"	160     130	40		135		69	140	2	2	2	1
+27	2	2	1	1	1	"Magus Gloves"		110     48	15		82		240	90	0	1	0	1
+28	2	2	1	1	0	"Lord Imperial Gloves"	185     155	50		155		95	165	2	2	2	1
+
+//Novos Itens
+
+29	2	2	1	1	1	"Dragon Knight Gloves"	135	85	20		100		35	120	2	2	2	1
+30	2	2	1	1	1	"Hades Gloves"		145     110	25		115		50	130	2	2	2	1
+//30	2	2	1	1	0	"Themido Gloves (reli)"	90     255	120		115		50	130	2	2	2	1
+//31	2	2	1	1	0	"Phantom Gloves"	155     120	30		110		250	230	2	2	2	1
+end																		
+
+//index	x	y	sirial		drop	name			level	Def	Walkspeed		Dur			Str	Agil				
+11																		
+0	2	2	1	1	1	"Bronze Boots"		12	4	10		34		80	20	0	1	0	1
+1	2	2	1	1	1	"Dragon Boots"		54	15	2		68		120	30	0	1	0	1
+2	2	2	1	1	1	"Pad Boots"		4	3	10		28		20	0	1	0	0	1
+3	2	2	1	1	1	"Legendary Boots"	46	12	0		42		30	0	1	0	0	1
+4	2	2	1	1	0	"WesT Boots"		195	165	55		124		155	215	2	2	2	1
+5	2	2	1	1	1	"Leather Boots"		5	2	12		30		80	0	0	1	0	1
+6	2	2	1	1	1	"Scale Boots"		22	8	8		40		110	0	0	1	0	1
+7	2	2	1	1	0	"Ventura Boots"		172	140	57		127		92	192	2	2	2	1
+8	2	2	1	1	1	"Brass Boots"		32	10	6		44		100	30	0	1	0	1
+9	2	2	1	1	1	"Iron Boots"		42	12	4		50		130	0	0	1	0	1
+10	2	2	1	1	1	"Vine Boots"		5	2	0		22		30	60	0	0	1	0
+11	2	2	1	1	1	"Silk Boots"		15	4	0		26		30	70	0	0	1	0
+12	2	2	1	1	0	"Warrior Boots"		198	170	0		150		115	215	2	2	2	1
+13	2	2	1	1	0	"Eclipse Boots"		175	142	60		130		95	195	2	2	2	1
+14	2	2	1	1	0	"Satanic Boots (E)"	228	225	100		150		115	215	2	2	2	0
+15	2	2	1	1	1	"Unicorn Boots"		72	22	2		80		150	70	0	0	0	1
+16	2	2	1	1	1	"Black Dragon Boots"	78	24	2		74		170	60	0	1	0	0
+17	2	2	1	1	1	"Phoenix Boots"		93	36	2		80		198	60	0	2	0	0
+18	2	2	1	1	1	"Soul Boots"		76	22	0		67		59	10	2	0	0	0
+19	2	2	1	1	0	"Themido Boots (reli)"	90	255	120		110		72	175	2	2	2	1
+20	2	2	1	1	1	"Thunder Boots"		92	32	2		82		150	70	0	0	0	1
+21	2	2	1	1	1	"Red Phoenix Boots"	125	67	15		82		310	150	0	2	0	0
+22	2	2	1	1	1	"DaRK Side Boots"	110	56	15		82		100	50	2	0	0	0
+23	2	2	1	1	1	"Hurricane Boots"	112	50	15		82		250	100	0	0	0	1
+24	2	2	1	1	1	"Nature Boots"		95	32	15		82		100	120	0	0	2	0
+25	2	2	1	1	0	"Fantastic Boots"	185	155	65		140		105	205	2	2	2	1
+26	2	2	1	1	0	"Venon Mist Boots"	170	138	55		124		89	190	2	2	2	1
+27	2	2	1	1	1	"Magus Boots"		115	55	15		82		270	130	0	1	0	1
+28	2	2	1	1	0	"Lord Imperial Boots"	195	165	70		150		115	215	2	2	2	1
+
+//Novos Itens
+
+29	2	2	1	1	1	"Dragon Knight Boots"	135	88	20		100		60	160	2	2	2	1
+30	2	2	1	1	1	"Hades Boots"		145	109	35		110		72	175	2	2	2	1
+//30	2	2	1	1	0	"Themido Boots (reli)"	90	255	120		110		72	175	2	2	2	1
+//31	2	2	1	1	0	"Phantom Boots"		155	120	30		110		250	230	2	2	2	1
+end																		
+
+//Index		x	y	sirial		Name			Level	Def	Dur	ReqLev	ReqEng	ReqStr	RegDex	Zen					
+12																			
+0	3	2	1	0	1	"Fairy Wings"		100	10	200	180	0	0	0	0	1	1	1	1	
+1	5	3	1	0	1	"Heaven Wings"		100	10	200	180	0	0	0	0	1	1	1	1	
+2	5	2	1	0	1	"Satan Wings"		100	20	200	180	0	0	0	0	1	1	1	1	
+3	5	3	1	1	0	"Fairy Wings 2"		150	30	200	215	0	0	0	0	2	2	2	1	
+4	5	3	1	1	0	"Heaven Wings 2"	150	30	200	215	0	0	0	0	2	2	2	1	
+5	3	3	1	1	0	"Satan Wings 2"		150	45	200	215	0	0	0	0	2	2	2	1	
+6	4	2	1	1	0	"WesT Wings"		230	70	200	215	0	0	0	0	2	2	2	1	
+7	1	1	1	0	1	"Twisting Slash"	47	0	0	80	0	0	0	99228	0	1	0	1	
+8	1	1	1	0	1	"Orb of Heal"		8	0	0	0	10	0	0	861	0	0	1	0	
+9	1	1	1	0	1	"Orb of Advanced Def"	13	0	0	0	10	0	0	2991	0	0	1	0	
+10	1	1	1	0	1	"Orb of Advanced Dmg"	18	0	0	0	10	0	0	7176	0	0	1	0	
+11	1	1	1	0	1	"Orb of Summoning"	3	0	0	0	10	0	0	150	0	0	1	0	
+12	1	1	1	0	1	"Hell Blast"		78	0	0	170	0	0	0	399306	0	2	0	0	
+13	1	1	1	0	1	"Fury of Light"		20	0	0	28	0	0	0	9555	0	1	0	1	
+14	1	1	1	0	1	"Inner Strength"	60	0	0	120	0	0	0	194124	0	1	0	0		
+15	1	1	1	0	1	"Jewel of Chaos"	78	0	0	0	0	0	0	0	1	1	1	1		
+16	1	1	1	0	1	"Fire Slash"		60	0	0	0	0	320	0	194124	0	0	0	1		
+17	1	1	1	0	1	"Penetration"		64	0	0	130	0	0	0	231804	0	0	1	0		
+18	1	1	1	0	1	"Ice Age"		81	0	0	0	0	0	258	442965	0	0	2	0		
+19	1	1	1	0	1	"Death Stab"		72	0	0	160	0	0	0	320433	0	2	0	0		
+end																				
+
+
+//Index		x	y	sirial	drop	Name	Level		Dur		����	��	��	��				
+13																		
+0	1	1	1	0	1	"Guardian Angel"	23		255		0	0	0	0	1	1	1	1
+1	1	1	1	0	1	"Satan"			28		255		0	0	0	0	1	1	1	1
+
+8	1	1	1	1	1	"Ring of Ice"		20		50		1	0	0	0	1	1	1	1
+9	1	1	1	1	1	"Ring of Poison"	17		50		0	1	0	0	1	1	1	1
+10	1	1	1	0	1	"Transform Ring"	1		200		0	0	0	0	1	1	1	1
+//11
+12	1	1	1	1	1	"Lightning Pendant"	21		50		0	0	1	0	1	1	1	1
+13	1	1	1	1	1	"Fire Pendant"		13		50		0	0	0	1	1	1	1	1
+14	1	2	1	0	0	"Blue Feather"		79		0		0	0	0	0	1	1	1	1
+15	1	1	1	0	0	"Fruit"			0		0		0	0	0	0	1	1	1	1
+16	1	2	1	0	1	"Blood Scroll"		0		128		0	0	0	0	1	1	1	1
+17	1	2	1	0	1	"Blood Fang"		0		128		0	0	0	0	1	1	1	1
+18	2	2	1	0	0	"Invisibility Cloak"	0		255		0	0	0	0	1	1	1	1
+19	1	2	1	0	0	"Angel Staff"		0		255		0	0	0	0	1	1	1	1
+end														
+
+//Index		x	y	sirial	drop	Name			Value	Level						
+14														
+0	1	1	0	0	1	"Apple"			5	1						
+1	1	1	0	0	1	"Small Heal Pot"	10	10						
+2	1	1	0	0	1	"Medium Heal Pot"	20	25						
+3	1	1	0	0	1	"Large Heal Pot"	30	40						
+4	1	1	0	0	1	"Small Mana Pot"	10	10						
+5	1	1	0	0	1	"Medium Mana Pot"	20	25						
+6	1	1	0	0	1	"Large Mana Pot"	30	40						
+//7
+8	1	1	0	0	1	"Antidote"		10	10						
+9	1	2	0	0	1	"Alcohol"		30	15						
+10	1	2	0	0	1	"Town Scroll"		30	30						
+11	1	1	1	0	1	"Box of Luck"		0	0						
+12	1	1	1	0	1	"Heart"			0	0						
+13	1	1	1	0	1	"Jewel of Bless"	150	25
+14	1	1	1	0	1	"Jewel of Soul"		150	79
+15	1	1	0	0	1	"Zen"			0	0
+16	1	1	1	0	1	"Jewel of Life"		0	72
+17	1	1	1	0	1	"Devil Eye"		0	1
+18	1	1	1	0	1	"Devil Key"		0	1
+19	1	1	1	0	0	"Devil Square Invite"	0	0
+20	1	1	0	0	1	"Love Charm"		0	0
+21	1	1	0	0	1	"Rena"			0	0
+22	1	1	1	0	1	"Jewel of Creation"	0	450
+23	1	1	1	0	1	"Book of Kings"		0	0
+24	1	2	1	0	1	"Quest Sword"		0	0
+25	1	1	1	0	1	"Quest Tear"		0	0
+26	1	1	1	0	1	"Quest Crystal"		0	0
+end								
+
+
+//Index		x	y	sirial		Name	Level	ReqLev	ReqEng											
+15
+0	1	2	1	0	1	"Poison Scroll"		30	0	10					28941	1	0	0	1		
+1	1	2	1	0	1	"Meteor Scroll"		21	0	10					10914	1	0	0	1		
+2	1	2	1	0	1	"Lightning Scroll"	13	0	10					2991	1	0	0	1		
+3	1	2	1	0	1	"Fireball Scroll"	5	0	10					306	1	0	0	1		
+4	1	2	1	0	1	"Flame Scroll"		35	0	10					44166	1	0	0	1	
+5	1	2	1	0	1	"Teleport Scroll"	17	0	10					6147	1	0	0	0		
+6	1	2	1	0	1	"Ice Scroll"		25	0	10					17568	1	0	0	1		
+7	1	2	1	0	1	"Twister Scroll"	40	0	10					63720	1	0	0	1	
+8	1	2	1	0	1	"Evil Spirits Scroll"	50	0	10					117618	1	0	0	1	
+9	1	2	1	0	1	"Hell Fire Scroll"	60	0	10					194124	1	0	0	1	
+10	1	2	1	0	1	"Power Wave Scroll"	9	0	10					1152	1	0	0	1		
+11	1	2	1	0	1	"Aqua Beam Scroll"	74	0	11					345501	1	0	0	1	
+12	1	2	1	0	1	"Blast Scroll"		80	0	13					428091	1	0	0	1	
+13	1	2	1	0	1	"Inferno Scroll"	93	0	15					647640	1	0	0	1	
+14	1	2	1	0	1	"Mass Teleport"		78	0	20					399306	2	0	0	0	
+15	1	2	1	0	0	"Defense Up"		72	0	17					320433	1	0	0	1
+end

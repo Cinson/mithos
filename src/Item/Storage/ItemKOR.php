@@ -32,10 +32,11 @@ class ItemKOR extends AbstractStorage {
                     continue;
                 } else {
                     $columns = preg_split("/[\s,]*\\\"([^\\\"]+)\\\"[\s,]*|" . "[\s,]*'([^']+)'[\s,]*|" . "[\s,]+/", $line, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+
                     $this->_items[$section][$columns[0]] = array(
-                        'name' => $columns[8],
-                        'width' => $columns[3],
-                        'height' => $columns[4],
+                        'name' => isset($columns[6]) ? $columns[6] : '-',
+                        'width' => isset($columns[1]) ? $columns[1] : 1,
+                        'height' => isset($columns[2]) ? $columns[2] : 1,
                         'durability' => isset($columns[12]) ? $columns[12] : 0,
                         'id' => $columns[0]
                     );

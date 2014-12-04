@@ -20,7 +20,7 @@ class ItemUtil {
             if ($index >= 130 && $index <= 134) {
             	$type = 3; //Small Asas
             }
-        } elseif($section == 13) {
+        } elseif ($section == 13) {
             if ($index >= 8 && $index <= 9) {
             	$type = 5; //Rings
             }
@@ -174,50 +174,64 @@ class ItemUtil {
             case 0:
                 $options = array(
                     'name' => 'No option',
-                    'opt0' => 'No Refinery 1&deg; Options',
-                    'opt1' => 'No Refinery 2&deg; Options',
+                    'options' => array(
+                        'No Refinery 1&deg; Options',
+                        'No Refinery 2&deg; Options'
+                    )
                 );
                 break;
             case 1:
                 $options = array(
                     'name' => 'Helms',
-                    'opt0' => 'SD Recovery Rate +20',
-                    'opt1' => 'Defense Success Rate +10',
+                    'options' => array(
+                        'SD Recovery Rate +20',
+                        'Defense Success Rate +10'
+                    )
                 );
                 break;
             case 2:
                 $options = array(
                     'name' => 'Armors',
-                    'opt0' => 'SD Auto Recovery',
-                    'opt1' => 'Def Success Rate +10',
+                    'options' => array(
+                        'SD Auto Recovery',
+                        'Def Success Rate +10'
+                    )
                 );
                 break;
             case 3:
                 $options = array(
                     'name' => 'Pants',
-                    'opt0' => 'Def Skill +200',
-                    'opt1' => 'Def Success Rate +10',
+                    'options' => array(
+                        'Def Skill +200',
+                        'Def Success Rate +10'
+                    )
                 );
                 break;
             case 4:
                 $options = array(
                     'name' => 'Gloves',
-                    'opt0' => 'Max HP +200',
-                    'opt1' => 'Def Success Rate +10',
+                    'options' => array(
+                        'Max HP +200',
+                        'Def Success Rate +10',
+                    )
                 );
                 break;
             case 5:
                 $options = array(
                     'name' => 'Boots',
-                    'opt0' => 'Max SD +700',
-                    'opt1' => 'Def Success Rate +10',
+                    'options' => array(
+                        'Max SD +700',
+                        'Def Success Rate +10'
+                    )
                 );
                 break;
             case 6:
                 $options = array(
                     'name' => 'Weapons',
-                    'opt0' => 'Additional Dmg +200',
-                    'opt1' => 'Pow Success Rate +10',
+                    'options' => array(
+                        'Additional Dmg +200',
+                        'Pow Success Rate +10'
+                    )
                 );
                 break;
         }
