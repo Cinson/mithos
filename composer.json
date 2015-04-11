@@ -1,17 +1,23 @@
 {
     "name": "hernandes/mithos",
-    "description": "Mithos f",
+    "description": "Mithos",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Flavio Hernandes"
         }
     ],
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "doctrine/dbal": "2.5.*",
+        "leaseweb/doctrine-pdo-dblib": "1.0.*",
+        "smarty/smarty": "3.1.*@dev",
+        "phpmailer/phpmailer": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "Mithos\\": "src"
-        }
+        },
+        "files": ["src/functions.php"]
     }
 }
