@@ -144,7 +144,11 @@ class Account {
     }
 
     public function setVipExpire($vipExpire) {
-        $this->_vipExpire = new \DateTime($vipExpire);
+        if ($vipExpire instanceof \DateTime) {
+            $this->_vipExpire = $vipExpire;
+        } else {
+            $this->_vipExpire = new \DateTime($vipExpire);
+        }
         return $this;
     }
 
