@@ -1,19 +1,20 @@
 <?php
     
-namespace Mithos\Admin;
+namespace Mithos\Menu;
     
 use Mithos\Util\Hash;
+use Mithos\Admin\Auth;
 
 class Menu {
     
-    private static $instance = null;
+    private static $instance = [];
     private $items = [];
 
-    public static function getInstance() {
-        if (static::$instance === null) {
-            static::$instance = new self();
+    public static function getInstance($instance = 'default') {
+        if (!isset(static::$instance[$instance])) {
+            static::$instance[$instance] = new self();
         }
-        return static::$instance;
+        return static::$instance[$instance];
     }
     
 	public function add($item) {
@@ -67,7 +68,7 @@ class Menu {
             $height = isset($item['window']) && isset($item['window']['height']) ? $item['window']['height'] : 400;
             $title = isset($item['window']) && isset($item['window']['title']) ? $item['window']['title'] : $item['title'];
 
-			$classes = ! empty($class) ? self::attributes(['class' => implode(' ', $class)]) : null;
+			$classes = ! empty($class) ? static::attributes(['class' => implode(' ', $class)]) : null;
             if ($hasChildren) {
                 $menu .= '<li' . $classes . '><a title="' . $item['title'] . '" href="#">' . $item['title'] . '</a>';
             } else {

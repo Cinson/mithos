@@ -2,8 +2,8 @@
     
 namespace Mithos\Account;
 
-use Mithos\Session\Session;
-use Mithos\DB\Mssql;
+use Mithos\Network\Session;
+use Mithos\Database\DriverManager;
 
 class Auth {
  
@@ -47,10 +47,10 @@ class Auth {
    }
 
    private static function check($username, $password) {
-       $result = Mssql::getInstance()->fetch('SELECT COUNT(1) AS total 
-           FROM MEMB_INFO WHERE memb___id = :username[string] AND 
-           memb__pwd = :password[string]
+       $total = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) AS total
+           FROM MEMB_INFO WHERE memb___id = :username AND
+           memb__pwd = :password
        ', ['username' => $username, 'password' => $password]);
-       return $result['total'] == 1;
+       return $total == 1;
    }   
 }

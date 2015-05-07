@@ -2,8 +2,8 @@
 
 namespace Mithos\Core;
 
-use Mithos\DB\Mssql;
-use Mithos\Session\Session;
+use Mithos\Database\DriverManager;
+use Mithos\Network\Session;
 
 class Validation {
 	
@@ -218,13 +218,13 @@ class Validation {
     }
     
     public static function isUnique($value, $table, $field) {
-    	$result = Mssql::getInstance()->fetch('SELECT COUNT(1) AS total FROM ' . $table . ' WHERE ' . $field . ' = :value[string]', ['value' => $value]);
-    	return $result['total'] == 0;
+    	$total = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) AS total FROM ' . $table . ' WHERE ' . $field . ' = :value', ['value' => $value]);
+    	return $total == 0;
     }
     
     public static function exists($value, $table, $field) {
-    	$result = Mssql::getInstance()->fetch('SELECT COUNT(1) AS total FROM ' . $table . ' WHERE ' . $field . ' = :value[string]', ['value' => $value]);
-    	return $result['total'] == 1;
+    	$total = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) AS total FROM ' . $table . ' WHERE ' . $field . ' = :value', ['value' => $value]);
+    	return $total == 1;
     }
     
     public static function captcha($value) {

@@ -16,12 +16,12 @@ abstract class AbstractStorage {
         return $this->_items;
     }
 
-    public function getItem($index, $key) {
+    public function getItem($section, $index) {
 //        echo '<pre>' . print_r($this->_items, true) . '</pre>';
-        if (!isset($this->_items[$index][$key])) {
-            throw new \Exception('No find item in file index: ' . $index . ' id: ' . $key);
+        if (!isset($this->_items[$section][$index])) {
+            throw new \Exception('No find item in file section: ' . $section . ' index: ' . $index);
         }
-        return $this->_items[$index][$key];
+        return $this->_items[$section][$index];
     }
 
     public function setFile($file) {

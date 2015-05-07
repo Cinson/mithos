@@ -3,6 +3,7 @@
 namespace Mithos\Item;
 
 use Mithos\Core\MuVersion;
+use Mithos\Core\Config;
 
 class GenerateHex {
     
@@ -24,8 +25,8 @@ class GenerateHex {
     public function generate() {
         $item = $this->getItem();
 
-        if ($item->getId() === null || $item->getIndex() === null) {
-            return str_repeat('F', 20);
+        if ($item->getIndex() === null || $item->getSection() === null) {
+            return str_repeat('F', Config::get('item.size', 20));
         }
 
         $hex = '';
@@ -51,7 +52,7 @@ class GenerateHex {
     }
 
     private function _generateByte1() {
-        return $this->_fix(dechex((($this->getItem()->getId() & 0x1F) | (($this->getItem()->getIndex() << 5) & 0xE0)) & 0xFF));
+        return $this->_fix(dechex((($this->getItem()->getIndex() & 0x1F) | (($this->getItem()->getSection() << 5) & 0xE0)) & 0xFF));
     }
 
     private function _generateByte2() {

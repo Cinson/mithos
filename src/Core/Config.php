@@ -3,8 +3,8 @@
 namespace Mithos\Core;
 
 use Mithos\Connection;
+use Mithos\Database\DriverManager;
 use Mithos\Util\Hash;
-use Mithos\DB\Mssql;
 
 class Config implements \Countable, \Iterator {
 
@@ -21,28 +21,28 @@ class Config implements \Countable, \Iterator {
     }
 
     public static function add(array $array) {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         $instance->_index = 0;
         $instance->_data = Hash::merge($instance->_data, $array);
         $instance->_count = count($instance->_data);
     }
 
     public static function load($files) {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         if (is_array($files)) {
             foreach ($files as $file) {
-                self::load($file);
+                static::load($file);
             }
         } else {
-            $instance->add(require $files);
+            $instance->add(require CONFIGS_PATH . $files . '.php');
         }
         return $instance;
     }
 
     public static function loadFromDB() {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         try {
-            $stmt = Connection::getConnection()->query('SELECT * FROM mw_config');
+            $stmt = DriverManager::getConnection()->query('SELECT * FROM mw_config');
             $configs = [];
             foreach ($stmt->fetchAll() as $config) {
                 if ($config['type'] === 'array') {
@@ -61,7 +61,7 @@ class Config implements \Countable, \Iterator {
     public static function save($key, $value = null) {
         if (is_array($key)) {
             foreach ($key as $k => $v) {
-                self::save($k, $v);
+                static::save($k, $v);
             }
         } else {
             $type = '';
@@ -71,25 +71,25 @@ class Config implements \Countable, \Iterator {
                 $type = 'boolean';
             }
 
-            $result = Connection::getConnection()->prepare('SELECT * FROM mw_config WHERE config = :config', ['config' => $key])->execute();
+            $result = DriverManager::getConnection()->fetchAssoc('SELECT * FROM mw_config WHERE config = :config', ['config' => $key]);
             if (empty($result)) {
-                
-                Mssql::getInstance()->query('INSERT INTO mw_config (config, body, type) VALUES (:config[string], :body[string], :type[string])', [
+                DriverManager::getConnection()->insert('mw_config', [
                     'config' => $key,
                     'body' => is_array($value) ? json_encode($value) : htmlentities($value),
                     'type' => $type
                 ]);
             } else {
-                Mssql::getInstance()->query('UPDATE mw_config set body = :body[string] WHERE config = :config[string]', [
-                    'config' => $key,
-                    'body' => is_array($value) ? json_encode($value) : htmlentities($value),
+                DriverManager::getConnection()->update('mw_config', [
+                    'body' => is_array($value) ? json_encode($value) : htmlentities($value)
+                ], [
+                    'config' => $key
                 ]);
             }
         }
     }
 
     public static function get($name = null, $default = null) {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         if ($name === null) {
             return $instance->_data;
         } else {

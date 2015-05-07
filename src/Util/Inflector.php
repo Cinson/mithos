@@ -22,5 +22,17 @@ class Inflector {
 	
     	return $string;
     }
+
+    public static function humanize($string) {
+        return ucwords(str_replace(['_', '-'], ' ', $string));
+    }
+
+    public static function classify($string) {
+        return static::camelize($string);
+    }
+
+    public static function camelize($string) {
+        return str_replace(' ', '', static::humanize($string));
+    }
     
 }

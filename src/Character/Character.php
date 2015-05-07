@@ -2,31 +2,32 @@
 
 namespace Mithos\Character;
 
-use Mithos\DB\Mssql;
+use Mithos\Database\DriverManager;
 use Mithos\Core\Config;
+use Mithos\Network\Socket;
 //use Mithos\Version;
 
 class Character {
 
-    private $name;
-    private $username;
-    private $klass;
-    private $level;
-    private $experience;
-    private $points;
-    private $strength;
-    private $agility;
-    private $energy;
-    private $vitality;
-    private $command;
-    private $code;
-    private $money;
-    private $map;
-    private $positionX;
-    private $positionY;
-    private $guild;
-    private $inventory;
-    private $connected;
+    private $_name;
+    private $_username;
+    private $_klass;
+    private $_level;
+    private $_experience;
+    private $_points;
+    private $_strength;
+    private $_agility;
+    private $_energy;
+    private $_vitality;
+    private $_command;
+    private $_code;
+    private $_money;
+    private $_map;
+    private $_positionX;
+    private $_positionY;
+    private $_guild;
+    private $_inventory;
+    private $_connected;
 
     public function __construct($name = null, $account = null) {
         if ($name !== null) {
@@ -35,152 +36,152 @@ class Character {
     }
 
     public function setName($name) {
-        $this->name = $name;
+        $this->_name = $name;
         return $this;
     }
     
     public function getName() {
-        return $this->name;
+        return $this->_name;
     }
     
     public function setUsername($username) {
-        $this->username = $username;
+        $this->_username = $username;
         return $this;
     }
     
     public function getUsername() {
-        return $this->username;
+        return $this->_username;
     }
 
     public function setClass($class) {
-        $this->klass = $class;
+        $this->_klass = $class;
         return $this;
     }
 
     public function getClass() {
-        return $this->klass;
+        return $this->_klass;
     }
 
     public function setLevel($level) {
-        $this->level = $level;
+        $this->_level = $level;
         return $this;
     }
     
     public function getLevel() {
-        return $this->level;
+        return $this->_level;
     }
 
     public function setExperience($experience) {
-        $this->experience = $experience;
+        $this->_experience = $experience;
         return $this;
     }
     
     public function getExperience() {
-        return $this->experience;
+        return $this->_experience;
     }
 
     public function setPoints($points) {
-        $this->points = $points;
+        $this->_points = $points;
         return $this;
     }
 
     public function setStrength($strength) {
-        $this->strength = $strength;
+        $this->_strength = $strength;
         return $this;
     }
     
     public function getStrength() {
-        return $this->strength;
+        return $this->_strength;
     }
 
     public function setAgility($agility) {
-        $this->agility = $agility;
+        $this->_agility = $agility;
         return $this;
     }
     
     public function getAgility() {
-        return $this->agility;
+        return $this->_agility;
     }
     
     public function setEnergy($energy) {
-        $this->energy = $energy;
+        $this->_energy = $energy;
         return $this;
     }
     
     public function getEnergy() {
-        return $this->energy;
+        return $this->_energy;
     }
 
     public function setVitality($vitality) {
-        $this->vitality = $vitality;
+        $this->_vitality = $vitality;
         return $this;
     }
 
     public function getVitality() {
-        return $this->vitality;
+        return $this->_vitality;
     }
 
     public function setCommand($command) {
-        $this->command = $command;
+        $this->_command = $command;
         return $this;
     }
 
     public function getCommand() {
-        return $this->command;
+        return $this->_command;
     }
     
     public function setCode($code) {
-        $this->code = $code;
+        $this->_code = $code;
         return $this;
     }
     
     public function getCode() {
-        return $this->code;
+        return $this->_code;
     }
 
     public function setMoney($money) {
-        $this->money = $money;
+        $this->_money = $money;
         return $this;
     }
 
     public function getMoney() {
-        return $this->money;
+        return $this->_money;
     }
 
     public function setMap($map) {
-        $this->map = $map;
+        $this->_map = $map;
         return $this;
     }
     
     public function getMap() {
-        return $this->map;
+        return $this->_map;
     }
 
     public function setPositionX($x) {
-        $this->positionX = $x;
+        $this->_positionX = $x;
         return $this;
     }
     
     public function getPositionX() {
-        return $this->positionX;
+        return $this->_positionX;
     }
        
     public function setPositionY($y) {
-        $this->positionY = $y;
+        $this->_positionY = $y;
         return $this;
     }
     
     public function getPositionY() {
-        return $this->positionY;
+        return $this->_positionY;
     }
    
     public function setConnected($connected) {
-        $this->connected = $connected;
+        $this->_connected = $connected;
         return $this;
     }
     
     public function isConnected() {
-        return $this->connected;
+        return $this->_connected;
     }
    
     public function exists() {
@@ -189,44 +190,12 @@ class Character {
    
     public function count($where = null) {
         $where = $where !== null ? ' WHERE ' . $where : '';
-        $result = Mssql::getInstance()->fetch('SELECT 
+        $total = DriverManager::getConnection()->fetchColumn('SELECT
             COUNT(1) AS total FROM Character
         ' . $where);
-        return $result['total'];
+        return $total;
     }
 
-    public function getMembersTeam() {
-        $results = Mssql::getInstance()->fetchAll('SELECT
-            c.Name AS name,
-            CASE WHEN s.ConnectStat > 0 and ac.GameIDC = c.Name THEN 1 ELSE 0 END as status
-            FROM MEMB_STAT s
-            INNER JOIN AccountCharacter ac ON (s.memb___id = ac.ID) 
-            INNER JOIN Character c ON (s.memb___id = c.AccountID) 
-            WHERE c.CtlCode > 7
-        ');
-        return $results;
-    }
-    
-    public function getLogged() {
-        $result = Mssql::getInstance()->fetchAll('SELECT 
-            ac.GameIDC AS character,
-            ms.IP AS ip,
-            ms.memb___id AS account, 
-            ms.ConnectStat AS connect_stat,
-            ms.ServerName AS server_name,
-            DATEDIFF(SECOND, ms.ConnectTM, GETDATE()) AS connected_time,
-            ms.ConnectTM AS connected_at,
-            ms.DisConnectTM AS disconnected_at
-            FROM MEMB_STAT ms
-            JOIN AccountCharacter ac ON ms.memb___id = ac.Id
-            JOIN Character c ON (ms.memb___id = c.AccountID)
-            WHERE ms.ConnectStat > 0 
-            AND ac.GameIDC = c.Name 
-            ORDER BY ConnectTM DESC
-        ');
-        return $result;
-    }
-    
     public function rename($new) {
         if (!$this->exists()) {
             throw new Exception(__('Character not found'));
@@ -244,49 +213,36 @@ class Character {
 
     public function update() {
         if ($this->exists()) {
-            Mssql::getInstance()->begin();
-            
-            Mssql::getInstance()->query('UPDATE MEMB_INFO SET 
-                Name = :name[string],
-                cLevel = :level[integer],
-                Experience = :experience[integer],
-                Class = :class[integer],
-                LevelUpPoint = :points[integer],
-                MapNumber = :map[integer],
-                MapPosY = :positionY[integer],
-                MapPosX = :positionX[integer],
-                CtlCode = :code[integer],
-                Strength = :strength[integer],
-                Dexterity = :agility[integer],
-                Vitality = :vitality[integer],
-                Energy = :energy[integer],
-                Money AS money[integer],
-            ', [
-                'name' => $this->getName(),
-                'level' => $this->getLevel(),
-                'experience' => $this->getExperience(),
-                'class' => $this->getClass(),
-                'points' => $this->getPoints(),
-                'map' => $this->getMap(),
-                'positionY' => $this->getPositionX(),
-                'positionX' => $this->getPositionY(),
-                'code' => $this->getCode(),
-                'strength' => $this->getStrength(),
-                'agility' => $this->getAgility(),
-                'vitality' => $this->getVitality(),
-                'energy' => $this->getEnergy(),
-                'command' => $this->getCommand(),
-                'money' => $this->getMoney(),
-            ]);
+
+            DriverManager::getConnection()->transactionl(function () {
+                $columns = [
+                    'Name' => $this->getName(),
+                    'cLevel' => $this->getLevel(),
+                    'Experience' => $this->getExperience(),
+                    'Class' => $this->getClass(),
+//                    'LevelUpPoint' => $this->get,
+                    'MapNumber' => $this->getMap(),
+                    'MapPosY' => $this->getPositionY(),
+                    'MapPosX' => $this->getPositionX(),
+                    'CtlCode' => $this->getCode(),
+                    'Strength' => $this->getStrength(),
+                    'Dexterity' => $this->getAgility(),
+                    'Vitality' => $this->getAgility(),
+                    'Energy' => $this->getEnergy(),
+                    'Money' => $this->getMoney()
+
+                ];
+
+
+                DriverManager::getConnection()->update('Character', $columns);
+            });
+
 
             if ($this->data['name'] !== $this->getName()) {
 //                $this->rename();
             }
 
-            Mssql::getInstance()->commit();
-        } else {
-            Mssql::getInstance()->rollback();
-            throw new Exception('ddd');
+
         }
     }
     
@@ -297,9 +253,9 @@ class Character {
     public function read($name, $account = null) {
         $where = '';
         if ($account !== null) {
-            $where = ' AND c.AccountID = :account[string]';
+            $where = ' AND c.AccountID = :account';
         }
-        $result = Mssql::getInstance()->fetch('SELECT
+        $result = DriverManager::getConnection()->fetchAssoc('SELECT
             s.ConnectStat AS connectStat,
             s.ConnectTM AS lastConnection,
             s.ServerName AS server,
@@ -328,7 +284,7 @@ class Character {
             LEFT JOIN AccountCharacter ac ON c.AccountID = ac.ID COLLATE DATABASE_DEFAULT
             LEFT JOIN MEMB_STAT s ON c.AccountID = s.memb___id COLLATE DATABASE_DEFAULT
             LEFT JOIN GuildMember gm ON c.Name = gm.Name COLLATE DATABASE_DEFAULT
-            WHERE c.Name = :name[string]
+            WHERE c.Name = :name
         ' . $where, ['name' => $name, 'account' => $account]);
         if (!empty($result)) {
             $this->data = $result;
@@ -341,22 +297,22 @@ class Character {
         }
     }
 
-//    public function disconnect() {
-//        $socket = new Socket();
-//        $socket->connect();
-//
-//        $socket->send("\xC1\x13\xA0\x00\x00\x00\x00\x00" . str_pad($this->getUsername(), 10, "\x00") . "\x00");
-//
-//        $read = $socket->read();
-//        $read = hexdec(substr($read, 16, 2));
-//        if ($tmpResponse == 1) {
-//            for ($i = 0; $i < 3; $i++) {
-//                sleep(1);
-//                $socket->send("\xC1\x13\xA0\x00\x00\x00\x00\x00" . str_pad($this->getUsername(), 10, "\x00") . "\x00");
-//            }
-//
-//            return true;
-//        }
-//        return false;
-//    }
+    public function disconnect() {
+        $socket = new Socket();
+        $socket->connect();
+
+        $socket->send("\xC1\x13\xA0\x00\x00\x00\x00\x00" . str_pad($this->getUsername(), 10, "\x00") . "\x00");
+
+        $read = $socket->read();
+        $read = hexdec(substr($read, 16, 2));
+        if ($tmpResponse == 1) {
+            for ($i = 0; $i < 3; $i++) {
+                sleep(1);
+                $socket->send("\xC1\x13\xA0\x00\x00\x00\x00\x00" . str_pad($this->getUsername(), 10, "\x00") . "\x00");
+            }
+
+            return true;
+        }
+        return false;
+    }
 }

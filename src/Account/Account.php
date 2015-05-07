@@ -2,29 +2,32 @@
 
 namespace Mithos\Account;
 
-use Mithos\DB\Mssql;
+use Mithos\Database\DriverManager;
 use Mithos\Character\Character;
 use Mithos\Core\Config;
+use Mithos\Slim\Application;
+use Mithos\Util\Hash;
 
 class Account {
 
-    private $name;
-    private $username;
-    private $password;
-    private $email;
-    private $confirmedEmail;
-    private $phone;
-    private $secretQuestion;
-    private $secretAnswer;
-    private $blocked;
-    private $personalId;
-    private $binWarehouse;
-    private $connected;
-    private $characters;
-    private $vipType;
-    private $vipExpire;
-    private $coins = array();
-    private $data = array();
+    private $_name;
+    private $_username;
+    private $_password;
+    private $_email;
+    private $_confirmedEmail;
+    private $_phone;
+    private $_secretQuestion;
+    private $_secretAnswer;
+    private $_blocked;
+    private $_personalId;
+    private $_binWarehouse;
+    private $_connected;
+    private $_characters;
+    private $_vipType;
+    private $_vipExpire;
+    private $_coins = [];
+    private $_data = [];
+    private $_services = [];
 
     public function __construct($username = null) {
         if ($username !== null) {
@@ -33,146 +36,146 @@ class Account {
     }
 
     public function setName($name) {
-        $this->name = $name;
+        $this->_name = $name;
         return $this;
     }
 
     public function getName() {
-        return $this->name;
+        return $this->_name;
     }
 
     public function setUsername($username) {
-        $this->username = strtolower($username);
+        $this->_username = strtolower($username);
         return $this;
     }
 
     public function getUsername() {
-        return $this->username;
+        return $this->_username;
     }
 
     public function setPassword($password) {
-        $this->password = $password;
+        $this->_password = $password;
         return $this;
     }
 
     public function getPassword() {
-        return $this->password;
+        return $this->_password;
     }
 
     public function setEmail($email) {
-        $this->email = $email;
+        $this->_email = $email;
         return $this;
     }
 
     public function getEmail() {
-        return $this->email;
+        return $this->_email;
     }
 
     public function setConfirmedEmail($confirmedEmail) {
-        $this->confirmedEmail = (bool) $confirmedEmail;
+        $this->_confirmedEmail = (bool) $confirmedEmail;
         return $this;
     }
 
     public function isConfirmedEmail() {
-        return $this->confirmedEmail;
+        return $this->_confirmedEmail;
     }
 
     public function setPhone($phone) {
-        $this->phone = $phone;
+        $this->_phone = $phone;
         return $this;
     }
 
     public function getPhone() {
-        return $this->phone;
+        return $this->_phone;
     }
 
     public function setSecretQuestion($question) {
-        $this->secretQuestion = $question;
+        $this->_secretQuestion = $question;
         return $this;
     }
 
     public function getSecretQuestion() {
-        return $this->secretQuestion;
+        return $this->_secretQuestion;
     }
 
     public function setSecretAnswer($answer) {
-        $this->secretAnswer = $answer;
+        $this->_secretAnswer = $answer;
         return $this;
     }
 
     public function getSecretAnswer() {
-        return $this->secretAnswer;
+        return $this->_secretAnswer;
     }
 
     public function setBlocked($blocked) {
-        $this->blocked = (bool) $blocked;
+        $this->_blocked = (bool) $blocked;
         return $this;
     }
 
     public function isBlocked() {
-        return $this->blocked;
+        return $this->_blocked;
     }
 
     public function setPersonalId($id) {
-        $this->personalId = $id;
+        $this->_personalId = $id;
         return $this;
     }
 
     public function getPersonalId() {
-        return $this->personalId;
+        return $this->_personalId;
     }
 
     public function setBinWarehouse($warehouse) {
-        $this->binWarehouse = $warehouse;
+        $this->_binWarehouse = $warehouse;
         return $this;
     }
 
     public function getBinWarehouse() {
-        return $this->binWarehouse;
+        return $this->_binWarehouse;
     }
 
     public function setVipType($vipType) {
-        $this->vipType = $vipType;
+        $this->_vipType = $vipType;
         return $this;
     }
 
     public function getVipType() {
-        return $this->vipType;
+        return $this->_vipType;
     }
 
     public function setVipExpire($vipExpire) {
-        $this->vipExpire = new \DateTime($vipExpire);
+        $this->_vipExpire = new \DateTime($vipExpire);
         return $this;
     }
 
     public function getVipExpire() {
-        return $this->vipExpire;
+        return $this->_vipExpire;
     }
 
     public function setCoins(array $coins) {
-        $this->coins = $coins;
+        $this->_coins = $coins;
         return $this;
     }
 
     public function setCoin($name, $value) {
-        $this->coins[$name] = $value;
+        $this->_coins[$name] = $value;
         return $this;
     }
 
     public function getCoins() {
-        return $this->coins;
+        return $this->_coins;
     }
 
     public function getCoin($coin) {
-        return isset($this->coins[$coin]) ? $this->coins[$coin] : null;
+        return isset($this->_coins[$coin]) ? $this->_coins[$coin] : null;
     }
 
     public function isConnected() {
-        return $this->connected;
+        return $this->_connected;
     }
 
     public function toArray() {
-        return $this->data;
+        return $this->_data;
     }
 
     public function exists() {
@@ -180,66 +183,67 @@ class Account {
     }
 
     public function getCharacters() {
-        if ($this->characters === null) {
-            $this->characters = array();
-            $results = Mssql::getInstance()->fetchAll('SELECT
+        if ($this->_characters === null) {
+            $this->_characters = array();
+            $results = DriverManager::getConnection()->fetchAll('SELECT
                 Name AS name FROM Character
-                WHERE AccountID = :username[string]
+                WHERE AccountID = :username
             ', ['username' => $this->getUsername()]);
             foreach ($results as $result) {
                 $character = new Character($result['name']);
-                $this->characters[] = $character;
-                if (!isset($this->data['characters'])) {
-                    $this->data['characters'] = [];
+                $this->_characters[] = $character;
+                if (!isset($this->_data['characters'])) {
+                    $this->_data['characters'] = [];
                 }
-                $this->data['characters'][] = $character->toArray();
+                $this->_data['characters'][] = $character->toArray();
             }
         }
-        return $this->characters;
+        return $this->_characters;
     }
 
     public function read($username = null) {
-        $coins = '';
+        $fields = [
+            'mi.memb_guid as guid',
+            'mi.memb___id as username',
+            'mi.memb__pwd as password',
+            'mi.memb_name as name',
+            'mi.mail_addr as email',
+            'mi.mail_chek as confirmedEmail',
+            'mi.tel__numb as phone',
+            'mi.fpas_ques as secretQuestion',
+            'mi.fpas_answ as secretAnswer',
+            'mi.sno__numb as personalId',
+            'mi.bloc_code as blocked',
+            'ms.ServerName as serverName',
+            'ms.ConnectTM as connectedAt',
+            'ms.DisConnectTM as disconnectedAt',
+            'ms.ConnectStat as connected',
+            'ms.IP AS ip',
+            'CONVERT(VARBINARY(1200), w.Items) as binWarehouse',
+            'ac.GameIDC as lastUsedCharacter'
+        ];
+
         foreach (Config::get('coins', []) as $coin) {
-            $coins .= '(select ' . $coin['column'] . ' from ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username[string]) as ' . $coin['column'] . ',';
+            $fields[] = '(select ' . $coin['column'] . ' from ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username) as ' . $coin['column'];
         }
 
-        $vip = '';
-        if (config('vip.column_type')) {
-            $vip .= 'mi.' . Config::get('vip.column_type') . ' as vipType,';
+        if (Config::get('vip.column_type')) {
+            $fields[] = 'mi.' . Config::get('vip.column_type') . ' as vipType';
         }
 
-        if (config('vip.column_expire')) {
-            $vip .= 'mi.' . Config::get('vip.column_expire') . ' as vipExpire,';
+        if (Config::get('vip.column_expire')) {
+            $fields[] = 'mi.' . Config::get('vip.column_expire') . ' as vipExpire';
         }
 
-        $result = Mssql::getInstance()->fetch('SELECT
-            mi.memb_guid AS guid,
-            mi.memb___id AS username,
-            mi.memb__pwd AS password,
-            mi.memb_name AS name,
-            mi.mail_addr AS email,
-            mi.mail_chek AS confirmedEmail,
-            mi.tel__numb AS phone,
-            mi.fpas_ques AS secretQuestion,
-            mi.fpas_answ AS secretAnswer,
-            mi.sno__numb AS personalId,
-            mi.bloc_code AS blocked,
-            ms.ServerName AS serverName,
-            ms.ConnectTM AS connectedAt,
-            ms.DisConnectTM AS disconnectedAt,
-            ms.ConnectStat AS connected,
-            ' . $coins . '
-            ' . $vip . '
-            ms.IP AS ip,
-            CONVERT(VARBINARY(1200), w.Items) as binWarehouse,
-            ac.GameIDC AS lastUsedCharacter
+        $sql = 'SELECT ' . join(',', $fields) . '
             FROM MEMB_INFO mi
             LEFT JOIN MEMB_STAT ms ON mi.memb___id = ms.memb___id COLLATE DATABASE_DEFAULT
             LEFT JOIN AccountCharacter ac ON mi.memb___id = ac.Id COLLATE DATABASE_DEFAULT
             LEFT JOIN warehouse w ON mi.memb___id = w.AccountID COLLATE DATABASE_DEFAULT
-            WHERE mi.memb___id = :username[string]
-        ', array('username' => $username === null ? $this->getUsername() : $username));
+            WHERE mi.memb___id = :username';
+
+        $result = DriverManager::getConnection()->fetchAssoc($sql, ['username' => $username == null ? $this->getUsername() : $username]);
+
         if (!empty($result)) {
             foreach ($result as $key => $value) {
                 $method = 'set' . ucfirst($key);
@@ -254,7 +258,8 @@ class Account {
                 unset($result[$coin['column']]);
             }
 
-            $this->data = $result;
+            $this->_data = $result;
+            $this->getCharacters();
             $this->setCoins($result['coins']);
         }
     }
@@ -262,16 +267,21 @@ class Account {
     private function saveCoins() {
         foreach (Config::get('coins', []) as $coin) {
             if ($this->getCoin($coin['column'])) {
-                $exists = Mssql::getInstance()->fetch('SELECT COUNT(1) as total FROM ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username[string]', ['username' => $this->getUsername()]);
+                $exists = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) as total FROM ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username', ['username' => $this->getUsername()]);
                 if ($coin['table'] !== 'MEMB_INFO' && $exists['total'] == 0) {
-                    Mssql::getInstance()->query('INSERT INTO ' . $coin['table'] . ' (\'' . $coin['column'] . '\', \'' . $coin['foreign_key'] . '\') VALUES (:coin[interger], :account[string])', [
-                        'coin' => $this->getCoin($coin['column']),
-                        'username' => $this->getUsername()
+                    DriverManager::getConnection()->insert($coin['table'], [
+                        $coin['column'] => $this->getCoin($coin['column']),
+                        $coin['foreign_key'] => $this->getUsername()
+                    ], [
+                        'integer', 'string'
                     ]);
                 } else {
-                    Mssql::getInstance()->query('UPDATE ' . $coin['table'] . ' SET ' . $coin['column'] . ' = :coin[integer] WHERE ' . $coin['foreign_key'] . ' = :username[string]', [
-                        'coin' => $this->getCoin($coin['column']),
-                        'username' => $this->getUsername()
+                    DriverManager::getConnection()->update($coin['table'], [
+                        $coin['column'] => $this->getCoin($coin['column'])
+                    ], [
+                        $coin['foreign_key'] => $this->getUsername()
+                    ], [
+                        'integer'
                     ]);
                 }
             }
@@ -279,78 +289,88 @@ class Account {
     }
 
     public function insert() {
-        Mssql::getInstance()->query('SET IDENTITY_INSERT MEMB_INFO ON;INSERT INTO MEMB_INFO
-            (memb_guid, memb___id, memb__pwd, memb_name, sno__numb, post_code, addr_info, 
-            addr_deta, tel__numb, phon_numb, mail_addr, mail_chek, bloc_code, ctl1_code, 
-            fpas_ques, fpas_answ, appl_days, modi_days, out__days, true_days, ' . Config::get('vip.column_type') . ', ' . Config::get('vip.column_expire') . ') 
-            VALUES 
-            (:guid[integer], :username[string], :password[string], :name[string], :pid[string], 
-            0, 0, 0, :phone[string], :phone[string], :email[string], :mailcheck[boolean], :blocked[boolean], 1, :question[string],
-            :answer[string], GETDATE(), GETDATE(), GETDATE(), GETDATE(), :viptype[integer], :vipexpire[date]);SET IDENTITY_INSERT MEMB_INFO OFF
-        ', [
-            'guid' => $this->getNextGuid(),
-            'username' => $this->getUsername(),
-            'password' => $this->getPassword(),
-            'name' => $this->getName(),
-            'pid' => $this->getPersonalId(),
-            'phone' => $this->getPhone(),
-            'email' => $this->getEmail(),
-            'mailcheck' => $this->isConfirmedEmail(),
-            'blocked' => $this->isBlocked(),
-            'question' => $this->getSecretQuestion(),
-            'answer' => $this->getSecretAnswer(),
-            'viptype' => $this->getVipType(),
-            'vipexpire' => $this->getVipExpire()->format('Y-m-d H:i:s')
-        ]);
 
-        $this->saveCoins();
+        DriverManager::getConnection()->transactional(function () {
+
+            DriverManager::getConnection()->exec('SET IDENTITY_INSERT MEMB_INFO ON');
+
+            DriverManager::getConnection()->insert('MEMB_INFO', [
+                'memb_guid' => $this->getNextGuid(),
+                'memb___id' => $this->getUsername(),
+                'memb__pwd' => $this->getPassword(),
+                'memb_name' => $this->getName(),
+                'sno__numb' => $this->getPersonalId(),
+                'post_code' => 0,
+                'addr_info' => 0,
+                'addr_deta' => 0,
+                'tel__numb' => $this->getPhone(),
+                'phon_numb' => $this->getPhone(),
+                'mail_addr' => $this->getEmail(),
+                'mail_chek' => $this->isConfirmedEmail(),
+                'bloc_code' => $this->isBlocked(),
+                'ctl1_code' => 1,
+                'fpas_ques' => $this->getSecretQuestion(),
+                'fpas_answ' => $this->getSecretAnswer(),
+                'appl_days' => new \DateTime(),
+                'modi_days' => new \DateTime(),
+                'out__days' => new \DateTime(),
+                'true_days' => new \DateTime(),
+                Config::get('vip.column_type') => $this->getVipType(),
+                Config::get('vip.column_expire') => $this->getVipExpire()
+            ], [
+                'string', 'string', 'string', 'string',
+                'string', 'integer', 'integer', 'integer',
+                'string', 'string', 'string', 'boolean',
+                'boolean', 'integer', 'string', 'string',
+                'datetime', 'datetime', 'datetime', 'datetime',
+                'integer', 'datetime'
+            ]);
+
+            DriverManager::getConnection()->exec('SET IDENTITY_INSERT MEMB_INFO OFF');
+
+            $this->saveCoins();
+        });
     }
 
     public function update() {
         if ($this->getUsername() != null) {
-            Mssql::getInstance()->query('UPDATE MEMB_INFO SET 
-                memb__pwd = :password[string],
-                memb_name = :name[string],
-                sno__numb = :pid[string],
-                tel__numb = :phone[string],
-                phon_numb = :phone[string],
-                mail_addr = :email[string],
-                mail_chek = :mailcheck[string],
-                fpas_ques = :question[string], 
-                fpas_answ = :answer[string],
-                bloc_code = :blocked[boolean],
-                ' . Config::get('vip.column_type') . ' = :viptype[integer],
-                ' . Config::get('vip.column_expire') . ' = :vipexpire[date]
-                WHERE memb___id = :username[string]
-            ', [
-                'username' => $this->getUsername(),
-                'password' => $this->getPassword(),
-                'name' => $this->getName(),
-                'pid' => $this->getPersonalId(),
-                'phone' => $this->getPhone(),
-                'email' => $this->getEmail(),
-                'mailcheck' => $this->isConfirmedEmail(),
-                'blocked' => $this->isBlocked(),
-                'question' => $this->getSecretQuestion(),
-                'answer' => $this->getSecretAnswer(),
-                'viptype' => $this->getVipType(),
-                'vipexpire' => $this->getVipExpire()->format('Y-m-d H:i:s')
-            ]);
+            DriverManager::getConnection()->transactional(function () {
+                DriverManager::getConnection()->update('MEMB_INFO', [
+                    'memb__pwd' => $this->getUsername(),
+                    'memb_name' => $this->getName(),
+                    'sno__numb' => $this->getPersonalId(),
+                    'tel__numb' => $this->getPhone(),
+                    'phon_numb' => $this->getPhone(),
+                    'mail_addr' => $this->getEmail(),
+                    'mail_chek' => $this->isConfirmedEmail(),
+                    'fpas_ques' => $this->getSecretQuestion(),
+                    'fpas_answ' => $this->getSecretAnswer(),
+                    'bloc_code' => $this->isBlocked(),
+                    Config::get('vip.column_type') => $this->getVipType(),
+                    Config::get('vip.column_expire') => $this->getVipExpire()
+                ], [
+                    'memb___id' => $this->getUsername()
+                ], [
+                    'string', 'string', 'string', 'string',
+                    'string', 'string', 'integer', 'string',
+                    'string', 'integer', 'integer', 'datetime'
+                ]);
 
-            $this->saveCoins();
+                $this->saveCoins();
+            });
         }
     }
 
     public function count($where = null) {
         $where = $where !== null ? ' WHERE ' . $where : '';
-        $result = Mssql::getInstance()->fetch('SELECT
+        $total = DriverManager::getConnection()->fetchColumn('SELECT
            COUNT(1) AS total FROM MEMB_INFO
        ' . $where);
-        return $result['total'];
+        return $total;
     }
 
     public function getLastConnections() {
-        $result = Mssql::getInstance()->fetchAll('SELECT 
+        $results = DriverManager::getConnection()->fetchAll('SELECT
             ac.GameIDC AS character,
             ms.IP AS ip,
             ms.ConnectStat AS connect_stat,
@@ -359,15 +379,44 @@ class Account {
             ms.DisConnectTM AS disconnected_at
             FROM MEMB_STAT ms
             JOIN AccountCharacter ac ON ms.memb___id = ac.Id
-            WHERE memb___id = :username[string] 
+            WHERE memb___id = :username
             ORDER BY ConnectTM DESC
         ', ['username' => $this->getUsername()]);
-        return $result;
+        return $results;
     }
 
     public function getNextGuid() {
-        $result = Mssql::getInstance()->fetch('SELECT MAX(memb_guid)+1 AS next FROM MEMB_INFO');
-        return $result['next'] + 1;
+        $next = DriverManager::getConnection()->fetchColumn('SELECT MAX(memb_guid)+1 AS next FROM MEMB_INFO');
+        return $next + 1;
+    }
+
+    public function getAvaliableServices() {
+        if (empty($this->_services)) {
+            $avaliables = DriverManager::getConnection()->fetchAll('SELECT * FROM mw_services s
+                WHERE (s.parent_id is null
+                OR s.allowed = 1
+                OR EXISTS (SELECT 1 FROM mw_viptype_services WHERE viptype = :viptype AND s.id = service_id))
+                AND
+                (s.active = 1)
+                ORDER BY s.sequence
+            ', ['viptype' => $this->getVipType()]);
+            $services = [];
+            foreach ($avaliables as $avaliable) {
+                $services[$avaliable['service']] = $avaliable;
+            }
+            $this->_services = $services;
+        }
+        return $this->_services;
+    }
+
+    public function getRootAvaliableServices() {
+        $services = [];
+        foreach ($this->getAvaliableServices() as $service) {
+            if (empty($service['parent_id'])) {
+                $services[] = $service;
+            }
+        }
+        return $services;
     }
 
     public function __toString() {

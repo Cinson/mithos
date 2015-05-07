@@ -5,6 +5,8 @@
  */
 namespace Mithos\Item;
 
+use Mithos\Core\Config;
+
 class Container {
 
     private $_items = array(array());
@@ -33,25 +35,26 @@ class Container {
     }
 
     public function load($hex) {
-        $items = str_split($hex, Item::getItemSize());
+        $items = str_split($hex, Config::get('item.size', 20));
 
         for ($i = 0; $i < $this->getWidth() * $this->getHeight(); $i++) {
             $cords = $this->_getCordBySlot($i);
 
             $item = new Item($items[$i]);
+            $item->parse();
             if (!$item->isHexEmpty()) {
-                $this->_put($item->parse(), $cords['x'], $cords['y']);
+                $this->_put($item, $cords['x'], $cords['y']);
             }
         }
     }
 
     public function generate() {
-        $temp = array();
-        for ($y = 0; $y <= $this->getHeight(); $y++) {
-            for ($x = 0; $x <= $this->getWidth(); $x++) {
+        $temp = [];
+        for ($y = 0; $y < $this->getHeight(); $y++) {
+            for ($x = 0; $x < $this->getWidth(); $x++) {
                 $item = $this->getItem($x, $y);
                 if ($item == null) {
-                    $temp[] = str_repeat('f', Item::getItemSize());
+                    $temp[] = str_repeat('f', Config::get('item.size', 20));
                 } else {
                     $temp[] = $item->generate();
                 }
@@ -60,13 +63,13 @@ class Container {
         return join('', $temp);
     }
 
-    public function insert(Item $item) {
+    public function addItem(Item $item) {
         if ($item->getWidth() > $this->getWidth()) {
             throw new \Exception('Item width is bigger than containers width.');
         } elseif ($item->getHeight() > $this->getHeight()) {
             throw new \Exception('Item width is bigger than containers width.');
         } elseif ($item->getHeight() <= 0 || $item->getWidth() <= 0) {
-            throw new Exception('Invalid item size (width <= 0 or height <= 0).');
+            throw new \Exception('Invalid item size (width <= 0 or height <= 0).');
         }
 
         for ($y = 0; $y <= $this->getHeight() - $item->getHeight(); $y++) {
@@ -100,9 +103,9 @@ class Container {
 
     private function _fit($item, $posx, $posy) {
         if ($posx >= $this->getWidth() || $posx < 0) {
-            throw new Exception('Invalid slot position. (x > width || x < 0)');
+            throw new \Exception('Invalid slot position. (x > width || x < 0)');
         } else if ($posy >= $this->getHeight() || $posy < 0) {
-            throw new Exception('Invalid slot position. (y > height || y < 0)');
+            throw new \Exception('Invalid slot position. (y > height || y < 0)');
         }
 
         for ($y = $posy; $y < $posy + $item->getHeight(); $y++) {

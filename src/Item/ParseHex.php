@@ -21,7 +21,7 @@ class ParseHex {
         return $this->_hex;
     }
 
-    public function getId() {
+    public function getIndex() {
         $temp = hexdec(substr($this->getHex(), 0, 2));
         if (MuVersion::is(MuVersion::V97, MuVersion::V100)) {
             return $temp & 0x1F;
@@ -30,11 +30,11 @@ class ParseHex {
         }
     }
 
-    public function getIndex() {
+    public function getSection() {
         $temp = hexdec(substr($this->getHex(), 0, 2));
         $unique = hexdec(substr($this->getHex(), 14, 2));
         if (MuVersion::is(MuVersion::V97, MuVersion::V100)) {
-            return ($temp & 0xE0 >> 5) + ((($unique & 0x80) == 0x80) ? 8 : 0);
+            return (($temp & 0xE0) >> 5) + ((($unique & 0x80) == 0x80) ? 8 : 0);
         } else {
             return hexdec(substr($this->getHex(), 18, 1));
         }
@@ -46,7 +46,7 @@ class ParseHex {
 
     public function getExcellents() {
         $temp = hexdec(substr($this->getHex(), 14, 2));
-        $exc = array();
+        $exc = [];
         $exc[0] = ($temp & 0x01) == 0x01;
         $exc[1] = ($temp & 0x02) == 0x02;
         $exc[2] = ($temp & 0x04) == 0x04;
@@ -97,7 +97,7 @@ class ParseHex {
     }
     
     public function getSockets() {
-        $sock = array();
+        $sock = [];
         $sock[0] = hexdec(substr($this->getHex(), 22, 2));
         $sock[1] = hexdec(substr($this->getHex(), 24, 2));
         $sock[2] = hexdec(substr($this->getHex(), 26, 2));

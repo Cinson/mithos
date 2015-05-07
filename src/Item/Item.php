@@ -3,15 +3,15 @@
 namespace Mithos\Item;
 
 use Mithos\Item\Storage\AbstractStorage;
+use Mithos\Core\Config;
+use Mithos\Item\Storage\ItemKOR;
+use Mithos\Item\Storage\Storage;
 
 class Item {
 
-    const ITEM_SIZE_20 = 20;
-    const ITEM_SIZE_32 = 32;
-
     private $_hex;
-    private $_id;
     private $_index;
+    private $_section;
     private $_unique;
     private $_name;
     private $_level;
@@ -27,7 +27,7 @@ class Item {
     private $_harmonyType;
     private $_harmonyLevel;
     private $_size = array();
-    private static $_itemSize = self::ITEM_SIZE_20;
+
     private static $_storage;
 
     public function __construct($hex = null) {
@@ -45,13 +45,13 @@ class Item {
         return $this->_hex;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
+    public function setIndex($index) {
+        $this->_index = $index;
         return $this;
     }
 
-    public function getId() {
-        return $this->_id;
+    public function getIndex() {
+        return $this->_index;
     }
 
     public function setName($name) {
@@ -63,13 +63,13 @@ class Item {
         return $this->_name;
     }
 
-    public function setIndex($index) {
-        $this->_index = $index;
+    public function setSection($section) {
+        $this->_section = $section;
         return $this;
     }
 
-    public function getIndex() {
-        return $this->_index;
+    public function getSection() {
+        return $this->_section;
     }
 
     public function setLevel($level) {
@@ -235,24 +235,19 @@ class Item {
         return $this->_sockets;
     }
 
-    public static function setItemSize($size) {
-        self::$_itemSize = $size;
-    }
-
-    public static function getItemSize() {
-        return self::$_itemSize;
-    }
-
     public static function setStorage(AbstractStorage $storage) {
-        self::$_storage = $storage;
+        static::$_storage = $storage;
     }
 
     public static function getStorage() {
-        return self::$_storage;
+        if (static::$_storage === null) {
+            static::$_storage = new Storage('ItemKOR', Config::get('path.itemkor'));
+        }
+        return static::$_storage;
     }
 
     public function isHexEmpty() {
-        return strtoupper($this->getHex()) === str_repeat('F', $this->getItemSize()) || $this->getHex() === str_repeat('0', $this->getItemSize());
+        return strtoupper($this->getHex()) === str_repeat('F', Config::get('item.size', 20)) || $this->getHex() === str_repeat('0', Config::get('item.size', 20));
     }
 
     public function getExcellentName($index) {
@@ -265,7 +260,7 @@ class Item {
 
     public function getExcellentsName() {
         $names = array();
-        $options = ItemUtil::getExcellentsName($this->getId(), $this->getIndex());
+        $options = ItemUtil::getExcellentsName($this->getSection(), $this->getIndex());
         $excellents = $this->getExcellents();
 
         for ($i = 0; $i < 6; $i++) {
@@ -284,8 +279,8 @@ class Item {
 
         $parse = new ParseHex($this->getHex());
 
-        $this->setId($parse->getId())
-            ->setIndex($parse->getIndex())
+        $this->setIndex($parse->getIndex())
+            ->setSection($parse->getSection())
             ->setUnique($parse->getUnique())
             ->setLevel($parse->getLevel())
             ->setOption($parse->getOption())
@@ -330,14 +325,10 @@ class Item {
             throw new \RuntimeException('Storage class not found');
         }
 
-        $item = $this->getStorage()->getItem($this->getIndex(), $this->getId());
+        $item = $this->getStorage()->getItem($this->getSection(), $this->getIndex());
 
         $this->setName($item['name'])
             ->setSize($item['width'], $item['height']);
-
-        if ($this->getDurability() === null) {
-            $this->setDurability($item['durability']);
-        }
     }
 
     public function generate() {

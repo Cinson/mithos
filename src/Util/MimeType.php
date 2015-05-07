@@ -1,13 +1,13 @@
 <?php
 
-namespace Mithos\Slim;
+namespace Mithos\Util;
 
 class MimeType {
 
-    private static $_mimeTypes = array(
-        'html' => array('text/html', '*/*'),
+    private static $_mimeTypes = [
+        'html' => ['text/html', '*/*'],
         'json' => 'application/json',
-        'xml' => array('application/xml', 'text/xml'),
+        'xml' => ['application/xml', 'text/xml'],
         'rss' => 'application/rss+xml',
         'ai' => 'application/postscript',
         'bcpio' => 'application/x-bcpio',
@@ -18,7 +18,7 @@ class MimeType {
         'cpio' => 'application/x-cpio',
         'cpt' => 'application/mac-compactpro',
         'csh' => 'application/x-csh',
-        'csv' => array('text/csv', 'application/vnd.ms-excel'),
+        'csv' => ['text/csv', 'application/vnd.ms-excel'],
         'dcr' => 'application/x-director',
         'dir' => 'application/x-director',
         'dms' => 'application/octet-stream',
@@ -139,7 +139,7 @@ class MimeType {
         'f90' => 'text/plain',
         'h' => 'text/plain',
         'hh' => 'text/plain',
-        'htm' => array('text/html', '*/*'),
+        'htm' => ['text/html', '*/*'],
         'ics' => 'text/calendar',
         'm' => 'text/plain',
         'rtf' => 'text/rtf',
@@ -200,11 +200,11 @@ class MimeType {
         'javascript' => 'application/javascript',
         'form' => 'application/x-www-form-urlencoded',
         'file' => 'multipart/form-data',
-        'xhtml' => array('application/xhtml+xml', 'application/xhtml', 'text/xhtml'),
+        'xhtml' => ['application/xhtml+xml', 'application/xhtml', 'text/xhtml'],
         'xhtml-mobile' => 'application/vnd.wap.xhtml+xml',
         'atom' => 'application/atom+xml',
         'amf' => 'application/x-amf',
-        'wap' => array('text/vnd.wap.wml', 'text/vnd.wap.wmlscript', 'image/vnd.wap.wbmp'),
+        'wap' => ['text/vnd.wap.wml', 'text/vnd.wap.wmlscript', 'image/vnd.wap.wbmp'],
         'wml' => 'text/vnd.wap.wml',
         'wmlscript' => 'text/vnd.wap.wmlscript',
         'wbmp' => 'image/vnd.wap.wbmp',
@@ -224,11 +224,11 @@ class MimeType {
         'mkv' => 'video/x-matroska',
         'pkpass' => 'application/vnd.apple.pkpass',
         'ajax' => 'text/html'
-    );
+    ];
 
     public static function getMimeType($ext = null) {
         if (isset(self::$_mimeTypes[$ext])) {
-            $contentType = self::$_mimeTypes[$ext];
+            $contentType = static::$_mimeTypes[$ext];
             $contentType = is_array($contentType) ? current($contentType) : $contentType;
         }
         if (strpos($contentType, '/') === false) {

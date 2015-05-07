@@ -144,9 +144,36 @@ if (!function_exists('user')) {
     }
 }
 
+if (!function_exists('require_auth')) {
+    function require_auth() {
+        return Mithos\Slim\Application::requireAuth();
+    }
+}
+
+if (!function_exists('require_service')) {
+    function require_service($service) {
+        $instance = Mithos\Slim\Application::getInstance();
+        return function () use ($instance, $service) {
+            if (user() !== null) {
+                $services = user()->getAvaliableServices();
+                if (!isset($services[$service])) {
+                    $instance->redirect('/');
+                }
+            } else {
+                $instance->redirect('/');
+            }
+        };
+    }
+}
+
 if (!function_exists('util')) {
     function util($class) {
-        $class = 'Mithos\\Util\\' . $class;
+        if (strpos($class, '.')) {
+            list($plugin, $class) = explode('.', $class);
+            $class = $plugin . '\\Util\\' . $class;
+        } else {
+            $class = 'Mithos\\Util\\' . $class;
+        }
         if (class_exists($class)) {
             return new $class;
         }

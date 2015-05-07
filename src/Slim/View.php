@@ -2,21 +2,17 @@
 
 namespace Mithos\Slim;
 
+use Mithos\Core\Plugin;
+use Mithos\Core\Config;
+use Mithos\Util\Hash;
+
 class View extends \Slim\View {
 
     const DEFAULT_LAYOUT = 'default';
     const LAYOUT_KEY = 'layout';
     const YIELD_KEY = 'content';
 
-    private $defaultDir = null;
-    private $blocks = null;
-    private $app = null;
-
-    public function __construct() {
-        parent::__construct();
-        $this->blocks = new ViewBlock();
-        $this->app = Application::getInstance();
-    }
+    private $_defaultDir = null;
 
     public function remove($key) {
         $this->data->remove($key);
@@ -30,33 +26,55 @@ class View extends \Slim\View {
         $this->data->set($key, array_merge($data, $value));
     }
 
-    public function block() {
-        return $this->block;
-    }
-
     public function fetch($template, $data = null) {
-        if ($this->defaultDir === null) {
-            $this->defaultDir = $this->templatesDirectory;
+        $app = Application::getInstance();
+
+        if ($this->_defaultDir === null) {
+            $this->_defaultDir = $this->templatesDirectory;
         }
 
         $layout = $this->getLayout($data);
 
-        if (substr($template, 0, 1) == '/') {
-            $parts = explode('/', $template);
-            $plugin = $parts[1];
-            $template = join('/', array_slice($parts, 2));
-            $this->templatesDirectory = $this->app->config('plugins.path') . DS . $plugin . DS . 'src' . DS . ($this->app->inAdmin() ? 'admin' . DS : '') . 'views' . DS;
+        if (strpos($template, '.') !== false) {
+            $parts = explode('.', $template);
+            $plugin = $parts[0];
+            $active = Plugin::isActive($plugin);
+            if ($active) {
+                $template = join('.', array_slice($parts, 1));
+                $this->templatesDirectory = Config::get('path.plugins') . DS . $plugin . DS . 'src' . DS . ($app->inAdmin() ? 'admin' . DS : '') . 'views' . DS;
+            }
         } else {
-            $this->templatesDirectory = $this->defaultDir;
+            $this->templatesDirectory = $this->_defaultDir;
         }
 
         $result = $this->render($template . '.php', $data);
 
-        if (!Application::getInstance()->request()->isAjax() && is_string($layout)) {
-            $this->templatesDirectory = $this->defaultDir;
+        if (!$app->request()->isAjax() && is_string($layout)) {
+            $this->templatesDirectory = $this->_defaultDir;
             $result = $this->renderLayout($layout, $result, $data);
         }
         return $result;
+    }
+
+    public function service($template, $root, $data = []) {
+        $account = \Mithos\Account\Auth::getAccount();
+
+        if ($account !== null) {
+            $avaliables = Hash::nest($account->getAvaliableServices());
+            $services = [];
+
+            foreach ($avaliables as $avaliable) {
+                if ($avaliable['service'] == $root) {
+                    $services = $avaliable['children'];
+                }
+            }
+
+            return View::display('panel/view', [
+                'service' => View::fetch($template, array_merge(['layout' => false], $data)),
+                'account' => \Mithos\Account\Auth::getAccount(),
+                'services' => $services
+            ]);
+        }
     }
 
     public function getLayout($data = null) {
@@ -73,7 +91,8 @@ class View extends \Slim\View {
         }
 
         if (is_null($layout)) {
-            $layout = $this->app->config(self::LAYOUT_KEY);
+            $app = Application::getInstance();
+            $layout = $app->config(self::LAYOUT_KEY);
         }
 
         if (is_null($layout)) {

@@ -15,11 +15,6 @@ class Application extends \Slim\Slim {
         }
     }
 
-//    public function render($template, $data = array(), $status = null) {
-//        $this->view->setTemplatesDirectory($this->config('templates.path'));
-//        echo $this->view->render($template, $data, $status);
-//    }
-
     public function fetch($template, $layout = true) {
         $this->view->setTemplatesDirectory($this->config('templates.path'));
         return $this->view->fetch($template, $layout);
@@ -30,13 +25,8 @@ class Application extends \Slim\Slim {
         return $this;
     }
 
-//    public function layout($layout) {
-//        $this->view->layout($layout);
-//        return $this;
-//    }
-
     public function inAdmin() {
-        return strpos($this->request()->getResourceUri(), '/admin') !== false;
+        return strpos($this->request()->getPathInfo(), '/admin') !== false;
     }
 
     public static function requireAuth() {

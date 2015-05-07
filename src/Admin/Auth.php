@@ -2,8 +2,8 @@
     
 namespace Mithos\Admin;
 
-use Mithos\Session\Session;
-use Mithos\DB\Mssql;
+use Mithos\Network\Session;
+use Mithos\Database\DriverManager;
 
 class Auth {
  
@@ -33,16 +33,14 @@ class Auth {
         if (!self::check($username, $password)) {
             return false;
         } else {
-            $user = Mssql::getInstance()->fetch('SELECT 
+            $user = DriverManager::getConnection()->fetchAssoc('SELECT
                 u.*,
                 g.name AS group_name,
                 g.access 
                 FROM mw_users u 
                 JOIN mw_user_groups g ON (g.id = u.group_id) 
-                WHERE u.username = :username[string]
-            ', array(
-                'username' => $username
-            ));
+                WHERE u.username = :username
+            ', ['username' => $username]);
             Session::write('Admin.user', $user);
             return true;
         }
@@ -54,9 +52,9 @@ class Auth {
     }
 
     private static function check($username, $password) {
-        $result = Mssql::getInstance()->fetch('SELECT COUNT(1) AS total 
-            FROM mw_users WHERE username = :username[string] AND 
-            password = :password[string]
+        $result = DriverManager::getConnection()->fetchAssoc('SELECT COUNT(1) AS total
+            FROM mw_users WHERE username = :username AND
+            password = :password
        ', ['username' => $username, 'password' => md5($password)]);
        return $result['total'] == 1;
     }   
