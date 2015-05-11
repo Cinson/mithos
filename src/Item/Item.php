@@ -28,7 +28,7 @@ class Item {
     private $_harmonyLevel;
     private $_size = [];
 
-    private static $_storage;
+    private static $_storage = null;
 
     public function __construct($hex = null) {
         if ($hex !== null) {
