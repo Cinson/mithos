@@ -9,8 +9,8 @@ use Mithos\Core\Config;
 
 class Container {
 
-    private $_items = array(array());
-    private $_map = array(array());
+    private $_items = [];
+    private $_map = [];
     private $_width = 0;
     private $_height = 0;
 

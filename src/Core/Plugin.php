@@ -48,7 +48,7 @@ class Plugin {
     }
     
     public static function loadAll() {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         $app = Application::getInstance();
         foreach ($instance->getPlugins() as $plugin) {
             if (is_dir(Config::get('path.plugins') . $plugin)) {
@@ -61,20 +61,20 @@ class Plugin {
     }
 
     public static function isActive($plugin) {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         $plugins = $instance->getPlugins();
         return in_array($plugin, $plugins);
     }
     
     public static function activate($plugin) {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         $plugins = $instance->getPlugins();
         $plugins[] = $plugin;
         Config::save('plugins', $plugins);
     }
     
     public static function deactivate($plugin) {
-        $instance = self::getInstance();
+        $instance = static::getInstance();
         $plugins = $instance->getPlugins();
         $plugins = array_diff($plugins, [$plugin]);
         Config::save('plugins', $plugins);

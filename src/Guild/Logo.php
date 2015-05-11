@@ -73,35 +73,35 @@ class Logo {
 
     private function getColor($str) {
         switch (strtolower($str)) {
-            case 1: return array(0, 0, 0);
+            case 1: return [0, 0, 0];
                 break;
-            case 2: return array(128, 128, 128);
+            case 2: return [128, 128, 128];
                 break;
-            case 3: return array(255, 255, 255);
+            case 3: return [255, 255, 255];
                 break;
-            case 4: return array(254, 0, 0);
+            case 4: return [254, 0, 0];
                 break;
-            case 5: return array(255, 127, 0);
+            case 5: return [255, 127, 0];
                 break;
-            case 6: return array(255, 255, 0);
+            case 6: return [255, 255, 0];
                 break;
-            case 7: return array(128, 255, 0);
+            case 7: return [128, 255, 0];
                 break;
-            case 8: return array(0, 254, 1);
+            case 8: return [0, 254, 1];
                 break;
-            case 9: return array(0, 254, 129);
+            case 9: return [0, 254, 129];
                 break;
-            case 'a': return array(0, 255, 255);
+            case 'a': return [0, 255, 255];
                 break;
-            case 'b': return array(0, 128, 255);
+            case 'b': return [0, 128, 255];
                 break;
-            case 'c': return array(0, 0, 254);
+            case 'c': return [0, 0, 254];
                 break;
-            case 'd': return array(127, 0, 255);
+            case 'd': return [127, 0, 255];
                 break;
-            case 'e': return array(255, 0, 254);
+            case 'e': return [255, 0, 254];
                 break;
-            case 'f': return array(255, 0, 128);
+            case 'f': return [255, 0, 128];
                 break;
         }
     }

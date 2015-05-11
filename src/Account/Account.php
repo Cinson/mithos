@@ -5,8 +5,6 @@ namespace Mithos\Account;
 use Mithos\Database\DriverManager;
 use Mithos\Character\Character;
 use Mithos\Core\Config;
-use Mithos\Slim\Application;
-use Mithos\Util\Hash;
 
 class Account {
 
@@ -268,7 +266,7 @@ class Account {
         }
     }
 
-    private function saveCoins() {
+    private function _saveCoins() {
         foreach (Config::get('coins', []) as $coin) {
             if ($this->getCoin($coin['column'])) {
                 $exists = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) as total FROM ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username', ['username' => $this->getUsername()]);
@@ -332,7 +330,7 @@ class Account {
 
             DriverManager::getConnection()->exec('SET IDENTITY_INSERT MEMB_INFO OFF');
 
-            $this->saveCoins();
+            $this->_saveCoins();
         });
     }
 
@@ -360,7 +358,7 @@ class Account {
                     'string', 'integer', 'integer', 'datetime'
                 ]);
 
-                $this->saveCoins();
+                $this->_saveCoins();
             });
         }
     }

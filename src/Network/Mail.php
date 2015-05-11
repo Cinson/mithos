@@ -65,11 +65,11 @@ class Mail extends \PHPMailer {
     
     public function setMessageFromTemplate($file, $data) {
         $smarty = new \Smarty();
-        $vars = array(
-            'template_dir' => TEMPLATES_PATH . 'mail/',
-            'compile_dir' => CACHE_PATH . 'smarty/',
-            'cache_dir' => CACHE_PATH
-        );
+        $vars = [
+            'template_dir' => Config::get('path.templates') . 'mail/',
+            'compile_dir' => Config::get('path.cache') . 'smarty/',
+            'cache_dir' => Config::get('path.cache')
+        ];
 
         foreach ($vars as $name => $value) {
             $smarty->{$name} = $value;

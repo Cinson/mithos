@@ -11,14 +11,14 @@ class Auth {
     private $account;
 
     public static function getInstance() {
-        if (self::$instance === null) {
-            self::$instance = new self();
+        if (static::$instance === null) {
+            static::$instance = new self();
         }
-        return self::$instance;
+        return static::$instance;
     }
 
    public static function getAccount() {
-       $instance = self::getInstance();
+       $instance = static::getInstance();
        if (self::loggedIn()) {
            if ($instance->account === null) {
                $instance->account = new Account(Session::read('Site.username'));
@@ -32,7 +32,7 @@ class Auth {
    }
 
    public static function login($username, $password) {
-       if (!self::check($username, $password)) {
+       if (!static::check($username, $password)) {
            return false;
        } else {
            Session::write('Site.username', $username);
@@ -43,7 +43,6 @@ class Auth {
 
    public static function logout() {
        Session::delete('Site.username');
-       Session::destroy();
    }
 
    private static function check($username, $password) {

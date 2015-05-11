@@ -10,7 +10,7 @@ class Config implements \Countable, \Iterator {
 
     private $_index;
     private $_count;
-    private $_data = array();
+    private $_data = [];
     private static $_instance;
 
     public static function getInstance() {

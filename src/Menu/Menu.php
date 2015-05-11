@@ -7,14 +7,14 @@ use Mithos\Admin\Auth;
 
 class Menu {
     
-    private static $instance = [];
-    private $items = [];
+    private static $_instance = [];
+    private $_items = [];
 
     public static function getInstance($instance = 'default') {
-        if (!isset(static::$instance[$instance])) {
-            static::$instance[$instance] = new self();
+        if (!isset(static::$_instance[$instance])) {
+            static::$_instance[$instance] = new self();
         }
-        return static::$instance[$instance];
+        return static::$_instance[$instance];
     }
     
 	public function add($item) {
@@ -28,21 +28,21 @@ class Menu {
         if (!isset($item['sequence'])) {
             $item['sequence'] = 0;
         }
-        $this->items[$item['id']] = $item;
+        $this->_items[$item['id']] = $item;
         return $this;
 	}
     
     public function getMenus() {
-        return $this->items;
+        return $this->_items;
     }
     
     public function getFormattedItems() {
-        $items = Hash::sort($this->items, '{s}.sequence', 'asc');
+        $items = Hash::sort($this->_items, '{s}.sequence', 'asc');
         return Hash::nest($items);
     }
     
     public function getItems() {
-        return $this->items;
+        return $this->_items;
     }
     
 	public function render(array $items = null, $level = 0) {

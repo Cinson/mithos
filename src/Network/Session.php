@@ -4,33 +4,33 @@ namespace Mithos\Network;
 
 class Session {
 
-    protected static $options = array(
+    private static $_options = [
         'lifetime' => 0,
         'path' => '/',
         'domain' => '',
         'secure' => true,
         'httponly' => true
-    );
+    ];
 
     public static function start() {
-        if (self::started()) {
+        if (static::started()) {
             return true;
         }
 
         if (!isset($_SESSION)) {
             session_cache_limiter(false);
-            self::setCookieParams();
+            static::setCookieParams();
         }
 
         return session_start();
     }
 
     public static function started() {
-        return (boolean) self::id();
+        return (boolean) static::id();
     }
 
     public static function read($key) {
-        if (!self::started() && !self::start()) {
+        if (!static::started() && !static::start()) {
             throw new \RuntimeException('could not start session');
         }
 
@@ -42,7 +42,7 @@ class Session {
     }
 
     public static function check($key) {
-        if (!self::started() && !self::start()) {
+        if (!static::started() && !static::start()) {
             throw new \RuntimeException('could not start session');
         }
 
@@ -50,7 +50,7 @@ class Session {
     }
 
     public static function write($key, $value) {
-        if (!self::started() && !self::start()) {
+        if (!static::started() && !static::start()) {
             throw new \RuntimeException('could not start session');
         }
 
@@ -58,7 +58,7 @@ class Session {
     }
 
     public static function delete($name) {
-        if (!self::started() && !self::start()) {
+        if (!static::started() && !static::start()) {
             throw new \RuntimeException('could not start session');
         }
 
@@ -66,7 +66,7 @@ class Session {
     }
 
     public static function destroy() {
-        if (!self::started() && !self::start()) {
+        if (!static::started() && !static::start()) {
             throw new \RuntimeException('could not start session');
         }
 
@@ -82,25 +82,25 @@ class Session {
     }
 
     public static function regenerate() {
-        if (!self::started() && !self::start()) {
+        if (!static::started() && !static::start()) {
             throw new \RuntimeException('could not start session');
         }
 
-        self::setCookieParams();
+        static::setCookieParams();
         session_regenerate_id();
     }
 
     public static function option($option, $value) {
-        self::$options[$option] = $value;
+        static::$_options[$option] = $value;
     }
 
     protected static function setCookieParams() {
         session_set_cookie_params(
-            self::$options['lifetime'],
-            self::$options['path'],
-            self::$options['domain'],
-            self::$options['secure'],
-            self::$options['httponly']
+            static::$_options['lifetime'],
+            static::$_options['path'],
+            static::$_options['domain'],
+            static::$_options['secure'],
+            static::$_options['httponly']
         );
     }
 }

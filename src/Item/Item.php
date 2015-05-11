@@ -26,7 +26,7 @@ class Item {
     private $_sockets;
     private $_harmonyType;
     private $_harmonyLevel;
-    private $_size = array();
+    private $_size = [];
 
     private static $_storage;
 
@@ -157,10 +157,10 @@ class Item {
         if (is_array($x)) {
             $this->_size = $x;
         } else {
-            $this->_size = array(
+            $this->_size = [
                 'x' => $x,
                 'y' => $y
-            );
+            ];
         }
         return $this;
     }
@@ -259,7 +259,7 @@ class Item {
     }
 
     public function getExcellentsName() {
-        $names = array();
+        $names = [];
         $options = ItemUtil::getExcellentsName($this->getSection(), $this->getIndex());
         $excellents = $this->getExcellents();
 
@@ -295,9 +295,9 @@ class Item {
     }
 
     public function toArray() {
-        $item = array();
+        $item = [];
         if (!$this->isHexEmpty()) {
-            $item = array(
+            $item = [
                 'id' => $this->getId(),
                 'index' => $this->getIndex(),
                 'name' => $this->getName(),
@@ -315,7 +315,7 @@ class Item {
                 'sockets' => $this->getSockets(),
                 'harmonyType' => $this->getHarmonyType(),
                 'harmonyLevel' => $this->getHarmonyLevel()
-            );
+            ];
         }
         return $item;
     }
@@ -352,7 +352,7 @@ class Item {
         $this->_excellents = null;
         $this->_serial = null;
         $this->_ancient = null;
-        $this->_size = array();
+        $this->_size = [];
         $this->_refine = null;
         $this->_sockets = null;
         $this->_harmonyType = null;

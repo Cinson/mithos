@@ -4,7 +4,7 @@ namespace Mithos\Item\Storage;
 
 abstract class AbstractStorage {
 
-    protected $_items = array();
+    protected $_items = [];
     protected $_file;
 
     public function __construct($file) {
@@ -17,7 +17,6 @@ abstract class AbstractStorage {
     }
 
     public function getItem($section, $index) {
-//        echo '<pre>' . print_r($this->_items, true) . '</pre>';
         if (!isset($this->_items[$section][$index])) {
             throw new \Exception('No find item in file section: ' . $section . ' index: ' . $index);
         }
