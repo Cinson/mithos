@@ -8,7 +8,7 @@ class MuVersion {
     const V100 = 2;
     const V102 = 3;
     
-    private $_version;
+    private $_version = null;
     private static $_instance;
     
     public static function getInstance() {
@@ -23,6 +23,10 @@ class MuVersion {
     }
     
     public static function getVersion() {
+        $instance = static::getInstance();
+        if ($instance->_version === null) {
+            return Config::get('server.version');
+        }
         return static::getInstance()->_version;
     }
 
