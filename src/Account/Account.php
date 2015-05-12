@@ -226,7 +226,7 @@ class Account {
         ];
 
         foreach (Config::get('coins', []) as $coin) {
-            $fields[] = '(select ' . $coin['column'] . ' from ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username) as ' . $coin['column'];
+            $fields[] = '(select ' . $coin['column'] . ' from ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username) as ' . $coin['id'];
         }
 
         if (Config::get('vip.column_type')) {
@@ -247,6 +247,12 @@ class Account {
         $result = DriverManager::getConnection()->fetchAssoc($sql, ['username' => $username == null ? $this->getUsername() : $username]);
 
         if (!empty($result)) {
+            $result['coins'] = [];
+            foreach (Config::get('coins', []) as $coin) {
+                $result['coins'][$coin['id']] = $result[$coin['id']];
+                unset($result[$coin['id']]);
+            }
+
             foreach ($result as $key => $value) {
                 $method = 'set' . ucfirst($key);
                 if (method_exists($this, $method)) {
@@ -254,32 +260,25 @@ class Account {
                 }
             }
 
-            $result['coins'] = [];
-            foreach (Config::get('coins', []) as $coin) {
-                $result['coins'][$coin['column']] = $result[$coin['column']];
-                unset($result[$coin['column']]);
-            }
-
             $this->_data = $result;
             $this->getCharacters();
-            $this->setCoins($result['coins']);
         }
     }
 
     private function _saveCoins() {
         foreach (Config::get('coins', []) as $coin) {
-            if ($this->getCoin($coin['column'])) {
+            if ($this->getCoin($coin['id'])) {
                 $exists = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) as total FROM ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username', ['username' => $this->getUsername()]);
                 if ($coin['table'] !== 'MEMB_INFO' && $exists['total'] == 0) {
                     DriverManager::getConnection()->insert($coin['table'], [
-                        $coin['column'] => $this->getCoin($coin['column']),
+                        $coin['column'] => $this->getCoin($coin['id']),
                         $coin['foreign_key'] => $this->getUsername()
                     ], [
                         'integer', 'string'
                     ]);
                 } else {
                     DriverManager::getConnection()->update($coin['table'], [
-                        $coin['column'] => $this->getCoin($coin['column'])
+                        $coin['column'] => $this->getCoin($coin['id'])
                     ], [
                         $coin['foreign_key'] => $this->getUsername()
                     ], [
