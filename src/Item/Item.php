@@ -241,7 +241,7 @@ class Item {
 
     public static function getStorage() {
         if (static::$_storage === null) {
-            static::$_storage = new Storage('ItemKOR', Config::get('path.itemkor'));
+            static::$_storage = Storage::factory('ItemKOR', Config::get('path.itemkor'));
         }
         return static::$_storage;
     }
