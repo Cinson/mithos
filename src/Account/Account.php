@@ -227,6 +227,7 @@ class Account {
             'mi.fpas_answ as secretAnswer',
             'mi.sno__numb as personalId',
             'mi.bloc_code as blocked',
+            'mi.appl_days as createdAt',
             'ms.ServerName as serverName',
             'ms.ConnectTM as connectedAt',
             'ms.DisConnectTM as disconnectedAt',
