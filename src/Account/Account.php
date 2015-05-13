@@ -21,6 +21,7 @@ class Account {
     private $_binWarehouse;
     private $_connected;
     private $_characters;
+    private $_credit;
     private $_vipType;
     private $_vipExpire;
     private $_coins = [];
@@ -123,6 +124,15 @@ class Account {
         return $this->_personalId;
     }
 
+    public function setCredit($credit) {
+        $this->_credit = $credit;
+        return $this;
+    }
+
+    public function getCredit() {
+        return $this->_credit;
+    }
+
     public function setBinWarehouse($warehouse) {
         $this->_binWarehouse = $warehouse;
         return $this;
@@ -212,6 +222,7 @@ class Account {
             'mi.mail_addr as email',
             'mi.mail_chek as confirmedEmail',
             'mi.tel__numb as phone',
+            'mi.' . Config::get('credit.column') . ' as credit',
             'mi.fpas_ques as secretQuestion',
             'mi.fpas_answ as secretAnswer',
             'mi.sno__numb as personalId',
@@ -316,6 +327,7 @@ class Account {
                 'modi_days' => new \DateTime(),
                 'out__days' => new \DateTime(),
                 'true_days' => new \DateTime(),
+                Config::get('credit.column') => $this->getCredit(),
                 Config::get('vip.column_type') => $this->getVipType(),
                 Config::get('vip.column_expire') => $this->getVipExpire()
             ], [
@@ -324,7 +336,7 @@ class Account {
                 'string', 'string', 'string', 'boolean',
                 'boolean', 'integer', 'string', 'string',
                 'datetime', 'datetime', 'datetime', 'datetime',
-                'integer', 'datetime'
+                'float', 'integer', 'datetime'
             ]);
 
             DriverManager::getConnection()->exec('SET IDENTITY_INSERT MEMB_INFO OFF');
@@ -347,6 +359,7 @@ class Account {
                     'fpas_ques' => $this->getSecretQuestion(),
                     'fpas_answ' => $this->getSecretAnswer(),
                     'bloc_code' => $this->isBlocked(),
+                    Config::get('credit.column') => $this->getCredit(),
                     Config::get('vip.column_type') => $this->getVipType(),
                     Config::get('vip.column_expire') => $this->getVipExpire()
                 ], [
@@ -354,7 +367,7 @@ class Account {
                 ], [
                     'string', 'string', 'string', 'string',
                     'string', 'string', 'integer', 'string',
-                    'string', 'integer', 'integer', 'datetime'
+                    'string', 'integer', 'float', 'integer', 'datetime'
                 ]);
 
                 $this->_saveCoins();
