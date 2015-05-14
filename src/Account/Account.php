@@ -286,8 +286,8 @@ class Account {
     private function _saveCoins() {
         foreach (Config::get('coins', []) as $coin) {
             if ($this->getCoin($coin['id'])) {
-                $exists = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) as total FROM ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username', ['username' => $this->getUsername()]);
-                if ($coin['table'] !== 'MEMB_INFO' && $exists['total'] == 0) {
+                $total = DriverManager::getConnection()->fetchColumn('SELECT COUNT(1) as total FROM ' . $coin['table'] . ' where ' . $coin['foreign_key'] . ' = :username', ['username' => $this->getUsername()]);
+                if ($coin['table'] !== 'MEMB_INFO' && $total == 0) {
                     DriverManager::getConnection()->insert($coin['table'], [
                         $coin['column'] => $this->getCoin($coin['id']),
                         $coin['foreign_key'] => $this->getUsername()
