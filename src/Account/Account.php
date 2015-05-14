@@ -174,6 +174,12 @@ class Account {
         return $this;
     }
 
+    public function addCoin($name, $value) {
+        $coin = $this->_coins[$name];
+        $this->_coins = $coin + $value;
+        return $this;
+    }
+
     public function getCoins() {
         return $this->_coins;
     }
