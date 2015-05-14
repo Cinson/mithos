@@ -127,8 +127,8 @@ if (!function_exists('__')) {
 }
 
 if (!function_exists('notify')) {
-    function notify($name) {
-        Mithos\Core\Plugin::notify($name);
+    function notify($name, $args = null) {
+        Mithos\Core\Plugin::notify($name, $args);
     }
 }
 
